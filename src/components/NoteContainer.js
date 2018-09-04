@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import Search from './Search';
 import Sidebar from './Sidebar';
 import Content from './Content';
-import '../assets/css/brooke.css'
+// import '../assets/css/brooke.css'
 
 class NoteContainer extends Component {
     state = {

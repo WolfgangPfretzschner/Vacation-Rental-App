@@ -2,28 +2,49 @@ import React, { Component, Fragment } from 'react';
 import Search from './Search'
 import PropertySidebar from './PropertiesSidebar';
 import PropertyContent from './PropertyContent';
+import PropTypes from 'prop-types';
 
+// import { withStyles } from '@material-ui/core/styles';
+// import Paper from '@material-ui/core/Paper';
+// import Grid from '@material-ui/core/Grid';
 
+import { Grid, Image } from 'semantic-ui-react'
+
+// const styles = theme => ({
+//    root: {
+//    flexGrow: 1,
+//    },
+//    paper: {
+//    padding: theme.spacing.unit * 2,
+//    textAlign: 'center',
+//    color: theme.palette.text.secondary,
+//    },
+// });
 
 class PropertiesContainer extends Component {
-    constructor(props) {
-        super(props);
+   constructor(props) {
+      super(props);
 
-    }
-
-
-
-    render(){
-        return (
-            <Fragment>
-                <Search/>
-                <div className='container'>
-                    <PropertyContent />
-                    <PropertySidebar /> 
-                </div>
-            </Fragment>
-        )
-    } 
+   }
+   render() {
+      const { classes } = this.props;
+      return (
+         <Grid divided='vertically'>
+         <Grid.Row columns={2}>
+           <Grid.Column>
+           <PropertyContent />
+           </Grid.Column>
+           <Grid.Column>
+             <PropertySidebar />
+           </Grid.Column>
+         </Grid.Row>
+     
+      
+       </Grid>
+         
+      )
+   }
 }
+
 
 export default PropertiesContainer;
