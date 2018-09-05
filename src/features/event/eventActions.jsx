@@ -6,26 +6,29 @@ import moment from 'moment';
 import firebase from '../../firebase';
 import compareAsc from 'date-fns/compare_asc';
 
-export const createEvent = event => {
-  return async (dispatch, getState, { getFirestore }) => {
-    const firestore = getFirestore();
-    const user = firestore.auth().currentUser;
-    const photoURL = getState().firebase.profile.photoURL;
-    let newEvent = createNewEvent(user, photoURL, event);
-    try {
-      let createdEvent = await firestore.add(`events`, newEvent);
-      await firestore.set(`event_attendee/${createdEvent.id}_${user.uid}`, {
-        eventId: createdEvent.id,
-        userUid: user.uid,
-        eventDate: event.date,
-        host: true
-      });
-      toastr.success('Success', 'Event has been created');
-    } catch (error) {
-      toastr.error('Oops', 'Something went wrong');
-    }
-  };
-};
+export const createEvent = event =>
+   async (dispatch, getState, { getFirebase, getFirestore }) => {
+      const firestore = getFirestore();
+      const firebase = getFirebase();
+      const user = firebase.auth().currentUser;
+      const photoURL = getState().firebase.profile.photoURL;
+      let newEvent = createNewEvent(user, photoURL, event);
+      try {
+         // debugger
+         await firestore.add(`bookings`, newEvent);
+         // await firestore.add(`bookings`, {
+         //    eventId: createdEvent.id,
+         //    userUid: user.uid,
+         //    eventDate:  event.date
+
+         // });
+         console.log("%cdone???", "color:red;font-size:18px")
+         toastr.success('Success', 'Event has been created');
+      } catch (error) {
+         toastr.error('Oops', 'Something went wrong');
+      }
+   };
+;
  
 export const updateEvent = event => {
   return async (dispatch, getState) => {
@@ -114,13 +117,13 @@ export const getEventsForDashboard = lastEvent => async (dispatch, getState) => 
       return querySnap;
     }
 
-    let events = [];
+    let bookings = [];
 
     for (let i = 0; i < querySnap.docs.length; i++) {
       let evt = { ...querySnap.docs[i].data(), id: querySnap.docs[i].id };
-      events.push(evt);
+      bookings.push(evt);
     }
-    dispatch({ type: FETCH_EVENTS, payload: { events } });
+    dispatch({ type: FETCH_EVENTS, payload: { bookings } });
     dispatch(asyncActionFinish());
     return querySnap;
   } catch (error) {

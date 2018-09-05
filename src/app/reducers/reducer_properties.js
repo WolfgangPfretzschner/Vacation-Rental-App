@@ -1,4 +1,4 @@
-import { FETCH_PROPS } from "../actions/types";
+import { FETCH_PROPS } from "../../actions/types";
 const initialPropertyState = {
    properties: ""
 };

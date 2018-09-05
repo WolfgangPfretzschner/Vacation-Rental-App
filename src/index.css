@@ -23,9 +23,9 @@ body {
 .masthead {
   background-image: linear-gradient(
           135deg,
-          rgb(24, 42, 115) 0%,
-          rgb(33, 138, 174) 69%,
-          rgb(32, 167, 172) 89%
+          rgb(74, 24, 115) 0%,
+          rgb(141, 33, 174) 69%,
+          rgb(139, 32, 172) 89%
   ) !important;
 }
 
@@ -71,9 +71,12 @@ body {
    height: 100px;
   background-image: linear-gradient(
           135deg,
-          rgb(24, 42, 115) 0%,
+          rgb(74, 24, 115) 0%,
+          rgb(141, 33, 174) 69%,
+          rgb(139, 32, 172) 89%
+          /* rgb(24, 42, 115) 0%,
           rgb(33, 138, 174) 69%,
-          rgb(32, 167, 172) 89%
+          rgb(32, 167, 172) 89% */
   ) !important;
 }
 

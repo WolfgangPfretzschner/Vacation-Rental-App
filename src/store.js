@@ -2,12 +2,12 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { reactReduxFirebase, getFirebase } from 'react-redux-firebase';
 import { reduxFirestore, getFirestore } from 'redux-firestore';
-import rootReducer from '../src/reducers/index';
+import rootReducer from './app/reducers/index';
 import thunk from 'redux-thunk'
-import firebase from '../src/firebase';
-import 'firebase/auth'
-import 'firebase/database'
-import 'firebase/firestore'
+import firebase from './firebase';
+// import 'firebase/auth'
+// import 'firebase/database'
+// import 'firebase/firestore'
 
 // event listener? tied to whatever calls it?
 // disptached object has some user key to figure out the userReducer
@@ -37,8 +37,8 @@ export const configureStore = preloadedState => {
   
     if (process.env.NODE_ENV !== 'production') {
       if (module.hot) {
-        module.hot.accept('../src/reducers', () => {
-          const newRootReducer = require('../src/reducers').default;
+        module.hot.accept('./app/reducers/index', () => {
+          const newRootReducer = require('./app/reducers/index').default;
           store.replaceReducer(newRootReducer);
         });
       }

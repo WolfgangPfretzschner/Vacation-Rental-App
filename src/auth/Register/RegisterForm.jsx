@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Form, Segment, Button, Label, Divider } from 'semantic-ui-react';
 import { Field, reduxForm } from 'redux-form';
 import { combineValidators, isRequired } from 'revalidate'
-import TextInput from '../../common/form/TextInput';
+import TextInput from '../../app/common/form/TextInput';
 import { registerUser } from '../authActions'
 import SocialLogin from '../SocialLogin/SocialLogin'
 

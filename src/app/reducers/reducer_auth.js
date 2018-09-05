@@ -1,4 +1,4 @@
-import { LOGIN_USER, SIGN_OUT_USER } from "../actions/types";
+import { LOGIN_USER, SIGN_OUT_USER } from "../../actions/types";
 import { createReducer } from "../common/util/reducerUtil";
 
 const initialState = {

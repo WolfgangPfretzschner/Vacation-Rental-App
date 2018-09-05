@@ -50,12 +50,12 @@ class NavBar extends Component {
             <Container>
                <Menu.Item as={Link} to="/" header>
                   <img src="./assets/img_1-2-300x82.png" alt="logo" />
-                  Re-vents
+                  F R G
                </Menu.Item>
                <Menu.Item as={NavLink} to="/properties" name="Properties" />
-               <Menu.Item as={NavLink} to="/notes" name="Notes" />
+               {/* <Menu.Item as={NavLink} to="/notes" name="Notes" /> */}
                {authenticated && (
-                  <Menu.Item as={NavLink} to="/dashboard" name="Dash" />
+                  <Menu.Item as={NavLink} to="/notes" name="Create Booking" />
                )}
 
                {authenticated && (

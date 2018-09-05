@@ -36,7 +36,7 @@ export const registerUser = (user) =>
         email: user.email,
         createdAt: firestore.FieldValue.serverTimestamp()
       }
-      debugger
+      // debugger
       await firestore.set(`users/${createdUser.user.uid}`, {...newUser})
       dispatch(closeModal());
     } catch (error) {

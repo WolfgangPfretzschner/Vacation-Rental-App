@@ -6,13 +6,9 @@ import { withFirestore, firebaseConnect, isEmpty } from "react-redux-firebase";
 const mapState = (state, ownProps) => {
    let property = {};
    let idCurrent = ownProps.match.params.id
-   console.log("%c curr id 1","color:red;font-size:18px",idCurrent)
    if (state.firestore.ordered.properties && state.firestore.ordered.properties.length > 0) {
-      console.log("%cfilter start 2","color:red;font-size:18px",)
       property = state.firestore.ordered.properties.find( prop => prop.id === idCurrent);
-      console.log("%c  state  3","color:blue;font-size:18px",property)
       }else{
-         console.log("%cno state yet 4","color:red;font-size:18px",)
       }
       return {
          property,
@@ -27,9 +23,7 @@ const mapState = (state, ownProps) => {
 class SingleProperty extends Component {
    async componentDidMount() {
       const { firestore, match} = this.props;
-      console.log("%c did mount 5","color:red;font-size:18px",)
       let property = await firestore.get(`properties/${match.params.id}`);
-      console.log("%c set  prop 6","color:red;font-size:18px",property)
    }
 
    // async componentWillUnmount() {

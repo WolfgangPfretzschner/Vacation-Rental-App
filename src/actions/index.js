@@ -1,4 +1,4 @@
-import PropertyAdapter from "../apis/adapter";
+// import PropertyAdapter from "../apis/adapter";
 import { FETCH_PROPS } from "../actions/types";
 
 

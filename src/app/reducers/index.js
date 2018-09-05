@@ -3,11 +3,13 @@ import { firebaseReducer } from "react-redux-firebase";
 import { firestoreReducer } from "redux-firestore";
 import { reducer as FormReducer } from 'redux-form';
 import 'semantic-ui-css/semantic.min.css';
-import modalsReducer from '../modals/modalReducer';
+import modalsReducer from '../../modals/modalReducer';
 
 import propertiesReducer from "./reducer_properties";
 import authReducer from "./reducer_auth";
-import asyncReducer from '../async/asyncReducer';
+import asyncReducer from '../../async/asyncReducer';
+import eventReducer from '../../features/event/eventReducer';
+import testReducer from '../../features/testarea/testReducer';
 
 const rootReducer = combineReducers({
    firebase: firebaseReducer,
@@ -17,6 +19,8 @@ const rootReducer = combineReducers({
    auth: authReducer,
    modals: modalsReducer,
    async: asyncReducer,
+   events: eventReducer,
+   test: testReducer,
 });
 
 export default rootReducer;
