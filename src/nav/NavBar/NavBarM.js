@@ -53,12 +53,12 @@ class NavBar extends Component {
                   F R G
                </Menu.Item>
                <Menu.Item as={NavLink} to="/properties" name="Properties" />
-               {/* <Menu.Item as={NavLink} to="/notes" name="Notes" /> */}
-               {authenticated && (
+               <Menu.Item as={NavLink} to="/DateRangePicker" name="DateRangePicker" />
+               {/* {authenticated && (
                   <Menu.Item as={NavLink} to="/notes" name="Create Booking" />
-               )}
+               )} */}
 
-               {authenticated && (
+               {/* {authenticated && (
                   <Menu.Item>
                      <Button
                         onClick={this.handleSignOut}
@@ -68,7 +68,7 @@ class NavBar extends Component {
                         content="Log Out"
                      />
                   </Menu.Item>
-               )}
+               )} */}
                {authenticated ? (
                   <SignedInMenu1
                      auth={auth}

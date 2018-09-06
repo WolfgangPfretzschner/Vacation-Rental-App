@@ -10,6 +10,7 @@ import authReducer from "./reducer_auth";
 import asyncReducer from '../../async/asyncReducer';
 import eventReducer from '../../features/event/eventReducer';
 import testReducer from '../../features/testarea/testReducer';
+import { reducer as toastrReducer } from 'react-redux-toastr';
 
 const rootReducer = combineReducers({
    firebase: firebaseReducer,
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
    async: asyncReducer,
    events: eventReducer,
    test: testReducer,
+   toastr: toastrReducer
 });
 
 export default rootReducer;

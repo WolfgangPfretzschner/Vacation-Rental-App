@@ -19,23 +19,33 @@ import SelectInput from "../../../app/common/form/SelectInput";
 import DateInput from "../../../app/common/form/DateInput";
 import PlaceInput from "../../../app/common/form/PlaceInput";
 import firebase from "../../../firebase";
+import DateRPicker from "./../../../dateRangePicker/DateRangePicker";
 
 const mapState = (state, ownProps) => {
    let event = {};
+   let propertieNames = []
+   let idCurrent = ownProps.match.params.id;
+   if (state.firestore.ordered.bookings) {
+      if (
+         idCurrent &&
+         state.firestore.ordered.bookings.length > 0
+      ) {
+         event = state.firestore.ordered.bookings.find(
+            prop => prop.id === idCurrent
+         );
+      } else {
 
-   if (
-      state.firestore.ordered.bookings &&
-      state.firestore.ordered.bookings[0]
-   ) {
-      event = state.firestore.ordered.bookings[0];
-   }
-   //   debugger
-   return {
-      initialValues: event,
-      event,
-      loading: state.async.loading
+         return {
+            initialValues: event,
+            event,
+            loading: state.async.loading,
+            propertieNames
+         };
+
+      }
+      //   debugger
    };
-};
+}
 
 const actions = {
    createEvent,
@@ -123,6 +133,10 @@ class EventForm extends Component {
    // }
 
    onFormSubmit = values => {
+      // let checkIn =  values.checkin_date._d
+      // let checkOut =  values.checkout_date._d
+      // let newValues = {...values, checkin_date: checkIn, checkout_date:checkOut }
+      // debugger
       //  if (this.props.initialValues.id) {
       //    if (Object.keys(values.venueLatLng).length === 0) {
       //      values.venueLatLng = this.props.event.venueLatLng
@@ -182,7 +196,7 @@ class EventForm extends Component {
                      <Field
                         name="checkout_date"
                         type="text"
-                        component={DateInput}
+                        component={DateRPicker}
                         dateFormat="YYYY-MM-DD HH:mm"
                         timeFormat="HH:mm"
                         //  showTimeSelect
@@ -203,7 +217,7 @@ class EventForm extends Component {
                      >
                         Cancel
                      </Button>
-                     <Button
+                     {/* <Button
                         onClick={() => cancelToggle(!event.cancelled, event.id)}
                         type="button"
                         color={event.cancelled ? "green" : "red"}
@@ -211,7 +225,7 @@ class EventForm extends Component {
                         content={
                            event.cancelled ? "Reactivate Event" : "Cancel Event"
                         }
-                     />
+                     /> */}
                   </Form>
 
                   <Button onClick={this.sampleHanlde}> click me </Button>

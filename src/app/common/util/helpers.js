@@ -4,20 +4,24 @@ export const objectToArray = (object) => {
   if (object) {
     return Object.entries(object).map(e => Object.assign(e[1], {id: e[0]}))
   }
-}
+} 
 
-export const createNewEvent = (user, photoURL, event) => {
-  event.date = moment(event.date).toDate();
+export const createNewBooking = (user, photoURL, event) => {
+  event.checkin_date = moment(event.date)._d;
+  event.checkout_date = moment(event.date)._d;
+   debugger
   return {
+   
     ...event,
-    hostUid: user.uid,
-    hostedBy: user.displayName,
+    guestUid: user.uid,
+    guestName: user.displayName,
     hostPhotoURL: photoURL || '/assets/user.png',
-   //  created: Date.now(),
-   //  attendees: {
+    created: moment(Date.now())._d,
+    property:','
+   //  {
    //    [user.uid]: {
    //      going: true,
-   //      joinDate: Date.now(),
+   //      joinDate: moment(Date.now())._d,
    //      photoURL: photoURL || '/assets/user.png',
    //      displayName: user.displayName,
    //      host: true

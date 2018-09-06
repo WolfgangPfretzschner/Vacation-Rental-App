@@ -7,23 +7,25 @@ const mapState = (state, ownProps) => {
    let property = {};
    let idCurrent = ownProps.match.params.id
    if (state.firestore.ordered.properties && state.firestore.ordered.properties.length > 0) {
-      property = state.firestore.ordered.properties.find( prop => prop.id === idCurrent);
-      }else{
-      }
-      return {
-         property,
-         // auth: state.firebase.auth
-      };
+      property = state.firestore.ordered.properties.find(prop => prop.id === idCurrent);
+   } else {
+   }
+   return {
+      property,
+      // auth: state.firebase.auth
    };
+};
 
-   const actions = {
-      fetchProperties
-    }
+const actions = {
+   fetchProperties
+}
 
 class SingleProperty extends Component {
-   async componentDidMount() {
+   componentDidMount() {
+      debugger
       const { firestore, match} = this.props;
-      let property = await firestore.get(`properties/${match.params.id}`);
+      let property = firestore.get(`properties/${match.params.id}`);
+      // debugger
    }
 
    // async componentWillUnmount() {
@@ -45,3 +47,6 @@ class SingleProperty extends Component {
 }
 
 export default withFirestore(connect(mapState, actions )(SingleProperty));
+
+
+// let query = propertiesRef.where('title'  )

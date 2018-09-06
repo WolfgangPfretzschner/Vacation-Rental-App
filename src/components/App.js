@@ -12,6 +12,7 @@ import EventForm from "../features/event/EventForm/EventForm";
 // import EventsDashBoard from "../features/event/EventDashboard/EventDashboard";
 import PropertySingle from './PropertySingle'
 import ModalManager from '../modals/ModalManager';
+import DateRangePicker from '../dateRangePicker/DateRangePicker'
 // import TestComponent from '../features/testarea/TestComponent'
  
 // const theme = createMuiTheme({
@@ -45,7 +46,7 @@ class App extends Component {
                   <Route path="/notes" component={EventForm} />
                   <Route path="/properties" component={PropertiesContainer} />
                   <Route path="/property/:id" component={PropertySingle} />
-                  {/* <Route path="/test" component={TestComponent} /> */}
+                  <Route path="/DateRangePicker" component={DateRangePicker} />
                   {/* <Route path="/people" component={PeopleDashboard} /> */}
                   {/* <Route path="/profile/:id" component={UserDetailedPage} /> */}
                   {/* <Route path="/settings" component={SettingsDashboard} /> */}

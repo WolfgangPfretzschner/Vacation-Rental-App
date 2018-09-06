@@ -1,7 +1,7 @@
 import { toastr } from 'react-redux-toastr';
 import { FETCH_EVENTS } from './eventConstants';
 import { asyncActionStart, asyncActionFinish, asyncActionError } from '../../async/asyncActions';
-import { createNewEvent } from '../../app/common/util/helpers';
+import { createNewBooking } from '../../app/common/util/helpers';
 import moment from 'moment';
 import firebase from '../../firebase';
 import compareAsc from 'date-fns/compare_asc';
@@ -12,9 +12,9 @@ export const createEvent = event =>
       const firebase = getFirebase();
       const user = firebase.auth().currentUser;
       const photoURL = getState().firebase.profile.photoURL;
-      let newEvent = createNewEvent(user, photoURL, event);
+      let newEvent = createNewBooking(user, photoURL, event);
       try {
-         // debugger
+         debugger
          await firestore.add(`bookings`, newEvent);
          // await firestore.add(`bookings`, {
          //    eventId: createdEvent.id,
@@ -23,7 +23,7 @@ export const createEvent = event =>
 
          // });
          console.log("%cdone???", "color:red;font-size:18px")
-         toastr.success('Success', 'Event has been created');
+         toastr.success('Success', 'Boking has been created');
       } catch (error) {
          toastr.error('Oops', 'Something went wrong');
       }
