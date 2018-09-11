@@ -40,7 +40,7 @@ export const searchForAvailableProperties = (inputValues) =>
          debugger
 
          console.log("%cquery log", "color:purple;font-size:18px", res);
-         dispatch({type: FETCH_PROPS, payload: {res} })
+         dispatch({type: FETCH_PROPS, payload:{res} })
       } catch (error) {
          console.log(error);
       }

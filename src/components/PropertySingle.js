@@ -49,13 +49,17 @@ class SingleProperty extends Component {
             <Segment>
                <Header dividing size="large" content="Photos" />
                <SlickSlider images={property.imgages} />
-                %20
+               
             </Segment>
 
             <Segment>
                <Grid columns={2} divided>
                   <Grid.Row stretched>
                      <Grid.Column>
+                     <Segment>
+                        <Header  dividing size="large" content="Make a booking!" />
+                        <p> {property.description}</p>
+                        </Segment>
                         <Segment>
                            <GoogleMap lat={property.lat} lng={property.lng} zoom={10} markers={[{name:property.name, lat:property.lat, lng:property.lng}]}/>
                         </Segment>

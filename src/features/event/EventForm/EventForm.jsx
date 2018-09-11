@@ -39,7 +39,8 @@ const mapState = (state, ownProps) => {
             event,
             loading: state.async.loading,
             propertieNames,
-            displayValues
+            displayValues,
+            properties: state.firestore.ordered.properties
          };
 
       }
@@ -89,11 +90,13 @@ class EventForm extends Component {
    async componentDidMount() {
       const { firestore, match } = this.props;
       await firestore.setListener(`bookings/`);
+      await firestore.setListener(`properties/`);
    }
 
    async componentWillUnmount() {
       const { firestore, match } = this.props;
       await firestore.unsetListener(`bookings/`);
+      await firestore.unsetListener(`properties/`);
    }
 
    handleScriptLoaded = () => this.setState({ scriptLoaded: true });
@@ -143,6 +146,12 @@ class EventForm extends Component {
       // this.props.history.push('/properties');
       //  }
    };
+   selectorMaker = () => {
+      // debugger
+      return this.props.properties === undefined ?
+      null :
+      this.props.properties.map(prop =>{ return { key:prop.name, text: prop.name, value: prop.name } })
+    }
 
    render() {
       const {
@@ -165,10 +174,10 @@ class EventForm extends Component {
                   <Header sub color="teal" content="Create Booking" /> 
                   <Form onSubmit={this.props.handleSubmit(this.onFormSubmit)}>
                      <Field
-                        name="category"
+                        name="Property"
                         type="text"
                         component={SelectInput}
-                        options={category}
+                        options={this.selectorMaker()}
                         placeholder="Select Property"
                      />
                      <Field
