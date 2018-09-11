@@ -9,7 +9,7 @@ import { property1 ,property2,property3,property4,property5,property6, } from '.
 
 export const createEvent = event =>
    async (dispatch, getState, { getFirebase, getFirestore }) => {
-      console.log("%cprops","color:red;font-size:18px",event)
+      console.log("%cprops in create booking","color:blue;font-size:18px",event)
       const firestore = getFirestore();
       const firebase = getFirebase();
       const user = firebase.auth().currentUser;

@@ -10,43 +10,20 @@ import { composeValidators, combineValidators, isRequired, hasLengthGreaterThan 
 import { createEvent, updateEvent, cancelToggle, seedProperties } from "../eventActions";
 import TextInput from "../../../app/common/form/TextInput";
 import TextArea from "../../../app/common/form/TextArea";
-import SelectInput from "../../../app/common/form/SelectInput";
-import DateInput from "../../../app/common/form/DateInput";
-import PlaceInput from "../../../app/common/form/PlaceInput";
+
 import firebase from "../../../firebase";
 import DateRPicker from "./../../../dateRangePicker/DateRangePicker";
 
 const mapState = (state, ownProps) => {
-   let displayValues
-   if(state.form.eventForm && state.form.eventForm.values){
-      displayValues = state.form.eventForm.values;
-   }
-   let event = {};
-   let propertieNames = []
-   let idCurrent = ownProps.match.params.id;
-   if (state.firestore.ordered.bookings) {
-      if (
-         idCurrent &&
-         state.firestore.ordered.bookings.length > 0
-      ) {
-         event = state.firestore.ordered.bookings.find(
-            prop => prop.id === idCurrent
-         );
-      } else {
 
-         return {
-            initialValues: event,
-            event,
-            loading: state.async.loading,
-            propertieNames,
-            displayValues,
-            properties: state.firestore.ordered.properties
-         };
+   return {
 
-      }
-      //   debugger
+      properties: state.firestore.ordered.properties
    };
+
 }
+      //   debugger
+
 
 const actions = {
    createEvent,
@@ -55,16 +32,7 @@ const actions = {
    seedProperties
 };
 
-const category = [
-   { key: "Banyan", text: "Banyan", value: "Banyan" },
-   { key: "Patricia", text: "Patricia", value: "Patricia" },
-   { key: "Victoria", text: "Victoria", value: "Victoria" },
-   { key: "Bella", text: "Bella", value: "Bella" },
-     { key: 'Catalina', text: 'Catalina', value: 'Catalina' }
-   //   { key: 'food', text: 'Food', value: 'food' },
-   //   { key: 'music', text: 'Music', value: 'music' },
-   //   { key: 'travel', text: 'Travel', value: 'travel' }
-];
+
 
 // const validate = combineValidators({
 //    title: isRequired({ message: "The event title is required" }),
@@ -101,31 +69,6 @@ class EventForm extends Component {
 
    handleScriptLoaded = () => this.setState({ scriptLoaded: true });
 
-     handleCitySelect = selectedCity => {
-       geocodeByAddress(selectedCity)
-         .then(results => getLatLng(results[0]))
-         .then(latlng => {
-           this.setState({
-             cityLatLng: latlng
-           });
-         })
-         .then(() => {
-           this.props.change('city', selectedCity);
-         });
-     };
-
-   //   handleVenueSelect = selectedVenue => {
-   //     geocodeByAddress(selectedVenue)
-   //       .then(results => getLatLng(results[0]))
-   //       .then(latlng => {
-   //         this.setState({
-   //           venueLatLng: latlng
-   //         });
-   //       })
-   //       .then(() => {
-   //         this.props.change('venue', selectedVenue);
-   //       });
-   //   };
    sampleHanlde = () => {
      this.props.seedProperties()
    }
@@ -142,17 +85,17 @@ class EventForm extends Component {
       //    this.props.updateEvent(values);
       //    this.props.history.goBack();
       //  } else {
-      this.props.createEvent(values);
+         const newValues = {...values, name:this.props.name}
+      this.props.createEvent(newValues);
       // this.props.history.push('/properties');
       //  }
    };
-   selectorMaker = () => {
-      // debugger
-      return this.props.properties === undefined ?
-      null :
-      this.props.properties.map(prop =>{ return { key:prop.name, text: prop.name, value: prop.name } })
-    }
-
+   // selectorMaker = () => {
+   //    return this.props.properties === undefined ?
+   //    null :
+   //    this.props.properties.map(prop =>{ return { key:prop.name, text: prop.name, value: prop.name } })
+   //  }
+  
    render() {
       const {
          invalid, 
@@ -161,27 +104,28 @@ class EventForm extends Component {
          event,
          cancelToggle,
          loading,
-         displayValues
+         displayValues,
+         name
       } = this.props;
       return (
          <Grid>
-            <Script
+            {/* <Script
                url="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1Oy3Ic6JyE6RR4eEbEFw2T-ynXjjWzTc&libraries=places"
                onLoad={this.handleScriptLoaded}
-            />
-            <Grid.Column width={10}>
-               <Segment>
+            /> */}
+            <Grid.Column width={12}>
+               {/* <Segment color='orange'  > */}
                   <Header sub color="teal" content="Create Booking" /> 
                   <Form onSubmit={this.props.handleSubmit(this.onFormSubmit)}>
-                     <Field
+                     {/* <Field
                         name="Property"
                         type="text"
                         component={SelectInput}
-                        options={this.selectorMaker()}
+                        options={name}
                         placeholder="Select Property"
-                     />
+                     /> */}
                      <Field
-                        name="description"
+                        name="name"
                         type="text"
                         component={TextArea}
                         rows={3}
@@ -219,7 +163,7 @@ class EventForm extends Component {
                      </Button>
                      <Button
                         disabled={loading}
-                        onClick={this.props.history.goBack}
+                        // onClick={this.props.history.goBack}
                         type="button"
                      >
                         Cancel
@@ -236,7 +180,7 @@ class EventForm extends Component {
                   </Form>
 
                   <Button onClick={this.sampleHanlde}> click me </Button>
-               </Segment>
+               {/* </Segment> */}
             </Grid.Column>
          </Grid>
       );

@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchProperties } from "../actions/index";
 import { withFirestore, firebaseConnect, isEmpty } from "react-redux-firebase";
-import { Grid, Header, Icon, Item, List, Segment, Image } from 'semantic-ui-react';
+import { Grid, Header, Icon, Item, Button, Segment, Image } from 'semantic-ui-react';
 import SlickSlider from '../features/slider/slick-slider'
 import DateRangePicker from '../dateRangePicker/DateRangePicker'
 import GoogleMap from '../components/MyGoogleMap'
+import { openModal } from "../modals/modalActions";
 
 
 const mapState = (state, ownProps) => {
@@ -17,12 +18,14 @@ const mapState = (state, ownProps) => {
    }
    return {
       property,
-      // auth: state.firebase.auth
+      auth: state.firebase.auth,
+      profile: state.firebase.profile
    };
 };
 
 const actions = {
-   fetchProperties
+   fetchProperties,
+   openModal
 }
 
 class SingleProperty extends Component {
@@ -37,10 +40,17 @@ class SingleProperty extends Component {
    //    const { firestore, match } = this.props;
    //    await firestore.unsetListener(`properties/${match.params.id}`);
    // }
-
+   handleBookingClick = () => {
+      console.log("%cclick modal ","color:red;font-size:18px",)
+      const authenticated = this.props.auth.isLoaded && !this.props.auth.isEmpty;
+      // debugger
+      authenticated ? 
+         this.props.openModal("BookingModal", {name:this.props.property.name}) : 
+         this.props.openModal('UnauthModal')
+      
+   };
    render() {
-      console.log("%c render 7", "color:red;font-size:18px", this.props, this.state)
-      const { property } = this.props;
+      const { auth, profile, property } = this.props;
       return (
          <div className="singleProperty">
             <Segment>
@@ -58,7 +68,7 @@ class SingleProperty extends Component {
                      <Grid.Column>
                      <Segment>
                         <Header  dividing size="large" content="Make a booking!" />
-                        <p> {property.description}</p>
+                        <Button onClick={this.handleBookingClick} basic  content="Click here to make a booking!" />
                         </Segment>
                         <Segment>
                            <GoogleMap lat={property.lat} lng={property.lng} zoom={10} markers={[{name:property.name, lat:property.lat, lng:property.lng}]}/>

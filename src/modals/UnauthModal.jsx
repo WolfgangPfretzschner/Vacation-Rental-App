@@ -10,23 +10,24 @@ const actions = { closeModal, openModal };
 class UnauthModal extends Component {
 
   handleCloseModal = () => {
-    if (this.props.location.pathname.includes('/event')) {
+    if (this.props.location.pathname.includes('/properties')) {
       this.props.closeModal();
     }
     else {
-      this.props.history.goBack();
+      // this.props.history.goBack();
       this.props.closeModal();
     }
   }
 
   render() {
-    const { openModal } = this.props;
+    const { openModal, name } = this.props;
+   //  debugger
     return (
       <Modal size="mini" open={true} onClose={this.handleCloseModal}>
         <Modal.Header>You need to be signed in to do that!</Modal.Header>
         <Modal.Content>
           <Modal.Description>
-            <p>Please either login or register to see this page</p>
+            <p>Please either login or register to make a booking</p>
             <Button.Group widths={4}>
               <Button fluid color="teal" onClick={() => openModal('LoginModal')}>
                 Login

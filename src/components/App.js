@@ -30,12 +30,8 @@ class App extends Component {
       return (
       <div>
       <ModalManager/>
-     
-     
          <Switch>
-
          </Switch>
-
          <Route
             path="/(.+)"
             render={() => (
