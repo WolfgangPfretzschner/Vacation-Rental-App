@@ -21,9 +21,26 @@ class PropertytCard extends Component {
       super(props);
    }
 
+   limitContent = (title, limit = 25) => {
+      const newTitle = [];
+      if (title.length > limit) {
+         title.split(" ").reduce((acc, cur) => {
+            if (acc + cur.length <= limit) {
+               newTitle.push(cur);
+            }
+            return acc + cur.length;
+         }, 0);
+         return `${newTitle.join(" ")} ...`;
+      }
+      return title;
+   };
+
+   
    render() {
+      const { classes, prop, name, } = this.props;
+      
       console.log("%cprops in card", "color:blue;font-size:18px", this.props);
-      const { classes, prop } = this.props;
+      const shortDescription = this.limitContent(prop.description, 45)
       return (
          <Paper className={classes.paper}>
             <Card>
@@ -34,52 +51,57 @@ class PropertytCard extends Component {
                   alt="Smiley face"
                />
                <Card.Content>
-                  <Card.Header>Matthew</Card.Header>
-                  <Card.Meta>
+                  <Card.Header>{name}</Card.Header>
+                  {/* <Card.Meta>
                      <span className="date">Joined in 2015</span>
-                  </Card.Meta>
+                  </Card.Meta> */}
                   <Card.Description>
-                     Matthew is a musician living in Nashville.
+                  {shortDescription}
                   </Card.Description>
                </Card.Content>
                <Card.Content extra>
-                  <a>
-                     <Icon name="user" />
-                     22 Friends
-                  </a>
+                  
+                     <Statistic.Value>
+                        <Image
+                           style={{height:'30px'}}
+                           src='./assets/dog.png'
+                           className='circular inline'
+                        />Pet Friendly
+                     </Statistic.Value>
+                    
+                  
                </Card.Content>
-               <Statistic.Group size='mini' widths='four'>
-               <Statistic size='mini'>
-                  <Statistic.Value>22</Statistic.Value>
-                  <Statistic.Label>Saves</Statistic.Label>
-               </Statistic>
+               <Card.Content extra>
+               <Statistic.Group   size="mini" widths="three">
+                  <Statistic>
+                     <Statistic.Value><Icon name="dollar sign" /></Statistic.Value>
+                     <Statistic.Label>{prop.price_per_night}/Night</Statistic.Label>
+                  </Statistic>
 
-               <Statistic size='mini'>
-                  <Statistic.Value text>
-                     Three
-        <br />Thousand
-      </Statistic.Value>
-                  <Statistic.Label>Signups</Statistic.Label>
-               </Statistic>
+                  {/* <Statistic>
+                     <Statistic.Value text>
+                        Three
+                        <br />
+                        Thousand
+                     </Statistic.Value>
+                     <Statistic.Label>Signups</Statistic.Label>
+                  </Statistic> */}
 
-               <Statistic size='mini'>
-                  <Statistic.Value>
-                     <Icon name='plane' />
-                     5
-                  </Statistic.Value>
-                  <Statistic.Label>Flights</Statistic.Label>
-               </Statistic>
+                  <Statistic>
+                     <Statistic.Value>
+                        <Icon name="user" />
+                     </Statistic.Value>
+                     <Statistic.Label>{prop.guests}/Guests</Statistic.Label>
+                  </Statistic>
 
-               <Statistic size='mini'>
-                  <Statistic.Value>
-                     <Image src='/images/avatar/small/joe.jpg' className='circular inline' />
-                     42
-                  </Statistic.Value>
-                  <Statistic.Label>Team Members</Statistic.Label>
-               </Statistic>
-            </Statistic.Group>
+                  <Statistic>
+                        <Statistic.Value><Icon name="bed" /></Statistic.Value>
+                     <Statistic.Label>{prop.bedrooms}/Rooms</Statistic.Label> 
+                  </Statistic>
+               </Statistic.Group>
+               </Card.Content>
             </Card>
-         </Paper >
+         </Paper>
       );
    }
 }

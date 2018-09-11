@@ -10,19 +10,22 @@ import authReducer from "./reducer_auth";
 import asyncReducer from '../../async/asyncReducer';
 import eventReducer from '../../features/event/eventReducer';
 import testReducer from '../../features/testarea/testReducer';
+import searchReducer from '../../features/propertySearch/propertySearchReducer';
 import { reducer as toastrReducer } from 'react-redux-toastr';
 
 const rootReducer = combineReducers({
    firebase: firebaseReducer,
    firestore: firestoreReducer,
    form: FormReducer,
-   properties: propertiesReducer,
+   // properties: propertiesReducer,
    auth: authReducer,
    modals: modalsReducer,
    async: asyncReducer,
    events: eventReducer,
    test: testReducer,
-   toastr: toastrReducer
+   toastr: toastrReducer,
+   search: searchReducer
 });
 
 export default rootReducer;
+  

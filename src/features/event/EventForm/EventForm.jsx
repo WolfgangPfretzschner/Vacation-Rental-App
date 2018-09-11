@@ -6,13 +6,8 @@ import { withFirestore } from "react-redux-firebase";
 import Script from "react-load-script";
 import { geocodeByAddress, getLatLng } from "react-places-autocomplete";
 import { Segment, Form, Button, Grid, Header } from "semantic-ui-react";
-import {
-   composeValidators,
-   combineValidators,
-   isRequired,
-   hasLengthGreaterThan
-} from "revalidate";
-import { createEvent, updateEvent, cancelToggle } from "../eventActions";
+import { composeValidators, combineValidators, isRequired, hasLengthGreaterThan } from "revalidate";
+import { createEvent, updateEvent, cancelToggle, seedProperties } from "../eventActions";
 import TextInput from "../../../app/common/form/TextInput";
 import TextArea from "../../../app/common/form/TextArea";
 import SelectInput from "../../../app/common/form/SelectInput";
@@ -22,6 +17,10 @@ import firebase from "../../../firebase";
 import DateRPicker from "./../../../dateRangePicker/DateRangePicker";
 
 const mapState = (state, ownProps) => {
+   let displayValues
+   if(state.form.eventForm && state.form.eventForm.values){
+      displayValues = state.form.eventForm.values;
+   }
    let event = {};
    let propertieNames = []
    let idCurrent = ownProps.match.params.id;
@@ -39,7 +38,8 @@ const mapState = (state, ownProps) => {
             initialValues: event,
             event,
             loading: state.async.loading,
-            propertieNames
+            propertieNames,
+            displayValues
          };
 
       }
@@ -50,31 +50,34 @@ const mapState = (state, ownProps) => {
 const actions = {
    createEvent,
    updateEvent,
-   cancelToggle
+   cancelToggle,
+   seedProperties
 };
 
 const category = [
    { key: "Banyan", text: "Banyan", value: "Banyan" },
-   { key: "Patricia", text: "Patricia", value: "Patricia" }
-   //   { key: 'film', text: 'Film', value: 'film' },
+   { key: "Patricia", text: "Patricia", value: "Patricia" },
+   { key: "Victoria", text: "Victoria", value: "Victoria" },
+   { key: "Bella", text: "Bella", value: "Bella" },
+     { key: 'Catalina', text: 'Catalina', value: 'Catalina' }
    //   { key: 'food', text: 'Food', value: 'food' },
    //   { key: 'music', text: 'Music', value: 'music' },
    //   { key: 'travel', text: 'Travel', value: 'travel' }
 ];
 
-const validate = combineValidators({
-   title: isRequired({ message: "The event title is required" }),
-   category: isRequired({ message: "Please provide a category" }),
-   description: composeValidators(
-      isRequired({ message: "Please enter a description" }),
-      hasLengthGreaterThan(4)({
-         message: "Description needs to be at least 5 characters"
-      })
-   )(),
-   city: isRequired("city"),
-   venue: isRequired("venue"),
-   date: isRequired("date")
-});
+// const validate = combineValidators({
+//    title: isRequired({ message: "The event title is required" }),
+//    category: isRequired({ message: "Please provide a category" }),
+//    description: composeValidators(
+//       isRequired({ message: "Please enter a description" }),
+//       hasLengthGreaterThan(4)({
+//          message: "Description needs to be at least 5 characters"
+//       })
+//    )(),
+//    city: isRequired("city"),
+//    venue: isRequired("venue"),
+//    date: isRequired("date")
+// });
 
 class EventForm extends Component {
    state = {
@@ -95,18 +98,18 @@ class EventForm extends Component {
 
    handleScriptLoaded = () => this.setState({ scriptLoaded: true });
 
-   //   handleCitySelect = selectedCity => {
-   //     geocodeByAddress(selectedCity)
-   //       .then(results => getLatLng(results[0]))
-   //       .then(latlng => {
-   //         this.setState({
-   //           cityLatLng: latlng
-   //         });
-   //       })
-   //       .then(() => {
-   //         this.props.change('city', selectedCity);
-   //       });
-   //   };
+     handleCitySelect = selectedCity => {
+       geocodeByAddress(selectedCity)
+         .then(results => getLatLng(results[0]))
+         .then(latlng => {
+           this.setState({
+             cityLatLng: latlng
+           });
+         })
+         .then(() => {
+           this.props.change('city', selectedCity);
+         });
+     };
 
    //   handleVenueSelect = selectedVenue => {
    //     geocodeByAddress(selectedVenue)
@@ -120,17 +123,9 @@ class EventForm extends Component {
    //         this.props.change('venue', selectedVenue);
    //       });
    //   };
-   // sampleHanlde = () => {
-   //    return (dispatch, getState, { getFirebase, getFirestore }) => {
-   //       const firestore = getFirestore();
-   //       console.log("%cclicked ","color:red;font-size:18px",)
-   //       firestore.add(`bookings`, {
-   //          eventId: 'test',
-   //          userUid: 'user id',
-   //          eventDate: 'somedate',
-   //       })
-   //    }
-   // }
+   sampleHanlde = () => {
+     this.props.seedProperties()
+   }
 
    onFormSubmit = values => {
       // let checkIn =  values.checkin_date._d
@@ -151,12 +146,13 @@ class EventForm extends Component {
 
    render() {
       const {
-         invalid,
+         invalid, 
          submitting,
          pristine,
          event,
          cancelToggle,
-         loading
+         loading,
+         displayValues
       } = this.props;
       return (
          <Grid>
@@ -166,7 +162,7 @@ class EventForm extends Component {
             />
             <Grid.Column width={10}>
                <Segment>
-                  <Header sub color="teal" content="Create Booking" />
+                  <Header sub color="teal" content="Create Booking" /> 
                   <Form onSubmit={this.props.handleSubmit(this.onFormSubmit)}>
                      <Field
                         name="category"
@@ -184,7 +180,7 @@ class EventForm extends Component {
                      />
                      <Header sub color="teal" content="Travel Dates" />
 
-                     <Field
+                     {/* <Field
                         name="checkin_date"
                         type="text"
                         component={DateInput}
@@ -192,7 +188,7 @@ class EventForm extends Component {
                         timeFormat="HH:mm"
                         //  showTimeSelect
                         placeholder="Checkin Date"
-                     />
+                     /> */}
                      <Field
                         name="checkout_date"
                         type="text"
@@ -200,7 +196,9 @@ class EventForm extends Component {
                         dateFormat="YYYY-MM-DD HH:mm"
                         timeFormat="HH:mm"
                         //  showTimeSelect
+                        value={{value:{start: null, end: null}}}
                         placeholder="Checkout date"
+                        // displayValues={displayValues}
                      />
                      <Button
                         loading={loading}
@@ -241,7 +239,7 @@ export default withFirestore(
       mapState,
       actions
    )(
-      reduxForm({ form: "eventForm", enableReinitialize: true, validate })(
+      reduxForm({ form: "eventForm", enableReinitialize: false })(
          EventForm
       )
    )

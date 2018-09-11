@@ -1,8 +1,10 @@
 import React, { Component, Fragment } from 'react';
+import { connect } from "react-redux";
 import Search from './Search'
 import PropertySidebar from './PropertiesSidebar';
 import PropertyContent from './PropertyContent';
 import PropTypes from 'prop-types';
+import { firestoreConnect } from "react-redux-firebase";
 
 // import { withStyles } from '@material-ui/core/styles';
 // import Paper from '@material-ui/core/Paper';
@@ -20,19 +22,29 @@ import { Grid, Image } from 'semantic-ui-react'
 //    color: theme.palette.text.secondary,
 //    },
 // });
+function mapState(state) {
+   return {
+      properties: state.firestore.ordered.properties,
+      search: state.search
+   };
+}
 
+function actions(){
+
+}
 class PropertiesContainer extends Component {
    constructor(props) {
       super(props);
-
    }
+  
    render() {
-      const { classes } = this.props;
+      const { classes, properties } = this.props;
+      
       return (
-         <Grid divided='vertically'>
-         <Grid.Row columns={2}>
-           <Grid.Column>
-           <PropertyContent />
+         <Grid columns='equal' className="app">
+         <Grid.Row streched>
+           <Grid.Column >
+           <PropertyContent properties={properties} />
            </Grid.Column>
            <Grid.Column>
              <PropertySidebar />
@@ -47,4 +59,4 @@ class PropertiesContainer extends Component {
 }
 
 
-export default PropertiesContainer;
+export default connect(mapState, actions)(firestoreConnect([{collection: "properties"}])(PropertiesContainer));

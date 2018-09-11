@@ -41,7 +41,7 @@ class App extends Component {
             render={() => (
             <div>
                <NavBarM />
-               <Container className="main">
+               <Container fluid className="main">
                   <Switch>
                   <Route path="/notes" component={EventForm} />
                   <Route path="/properties" component={PropertiesContainer} />

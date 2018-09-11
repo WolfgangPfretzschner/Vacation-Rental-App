@@ -15,4 +15,4 @@ export default function propertiesReducer(
       default:
          return state;
    }
-}
+} 

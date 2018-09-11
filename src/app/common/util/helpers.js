@@ -7,9 +7,9 @@ export const objectToArray = (object) => {
 } 
 
 export const createNewBooking = (user, photoURL, event) => {
-  event.checkin_date = moment(event.date)._d;
-  event.checkout_date = moment(event.date)._d;
-   debugger
+   // debugger
+  event.checkin_date = event.checkout_date.start._d
+  event.checkout_date = event.checkout_date.end._d
   return {
    
     ...event,

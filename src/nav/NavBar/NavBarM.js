@@ -48,12 +48,12 @@ class NavBar extends Component {
       return (
          <Menu inverted fixed="top">
             <Container>
-               <Menu.Item as={Link} to="/" header>
+               <Menu.Item as={Link} to="/properties" header>
                   <img src="./assets/img_1-2-300x82.png" alt="logo" />
                   F R G
                </Menu.Item>
                <Menu.Item as={NavLink} to="/properties" name="Properties" />
-               <Menu.Item as={NavLink} to="/DateRangePicker" name="DateRangePicker" />
+               <Menu.Item as={NavLink} to="/notes" name="DateRangePicker" />
                {/* {authenticated && (
                   <Menu.Item as={NavLink} to="/notes" name="Create Booking" />
                )} */}

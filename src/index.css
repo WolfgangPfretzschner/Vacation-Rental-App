@@ -68,7 +68,7 @@ body {
 }
 
 .ui.fixed.menu {
-   height: 100px;
+   height: 80px;
   background-image: linear-gradient(
           135deg,
           rgb(74, 24, 115) 0%,
@@ -107,4 +107,24 @@ body {
 .ui.comments .comment .comments {
   padding-bottom: 0 !important;
   padding-left: 2em !important;
+}
+
+.sidebar {
+   width: 100%;
+   height: 900px;
+   overflow: scroll;
+}
+.app {
+   display: flex;
+   flex-direction: column;
+   height: calc(100vh - 10px);
+   margin: 10px 10px 0 10px;
+}
+.singleProperty {
+   width: 90vw;
+   padding: 3em;
+}
+.slick-slider {
+   width: 95vw ;
+   padding-left: 5%;
 }

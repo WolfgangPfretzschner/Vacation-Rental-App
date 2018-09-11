@@ -19,15 +19,20 @@ class Content extends Component {
    constructor(props) {
       super(props);
    }
+   markersFunc = () => {
+      return this.props.properties === undefined ? 
+      null :
+      this.props.properties.map( obj => {return {name:obj.name, lat:obj.lat, lng:obj.lng }}) 
 
+   }
    render() {
-      const {classes } = this.props
+      const {classes, properties } = this.props
+      console.log("%cprops container","color:red;font-size:18px",this.props)
       return (
          // <div className='master-detail-element detail'>
          <Paper className={classes.paper}>
             {/* <MyMap/> */}
-               <GoogleMap />
-               this is a test
+               <GoogleMap lat={26.573981} lng={-81.913450} zoom={10} markers={ this.markersFunc() } />
          </Paper>
          // </div>
       );

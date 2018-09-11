@@ -16,7 +16,7 @@ const DateRangeInput = ({ input: { value, onChange, onBlur, ...restInput }, widt
             moment().add(2, 'weeks').add(3, 'days')
          ),
       },
-      {
+      { 
          state: 'unavailable',
          range: moment.range(
             moment().add(3, 'weeks'),
