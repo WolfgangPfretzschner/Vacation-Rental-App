@@ -1,6 +1,7 @@
 import { toastr } from 'react-redux-toastr';
 import { FETCH_EVENTS } from './eventConstants';
 import { asyncActionStart, asyncActionFinish, asyncActionError } from '../../async/asyncActions';
+import { closeModal } from '../../modals/modalActions'
 import { createNewBooking } from '../../app/common/util/helpers';
 import moment from 'moment';
 import firebase from '../../firebase';
@@ -18,6 +19,7 @@ export const createEvent = event =>
       try {
          // debugger
          await firestore.add(`bookings`, newBooking);
+         dispatch(closeModal())
          console.log("%cdone???", "color:red;font-size:18px")
          toastr.success('Success', 'Boking has been created');
       } catch (error) {
