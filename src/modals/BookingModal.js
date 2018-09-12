@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Modal} from 'semantic-ui-react';
 import {connect} from 'react-redux';
-
+import { withRouter } from 'react-router-dom'
 import {closeModal} from "./modalActions";
 import EventForm from '../features/event/EventForm/EventForm';
 
@@ -32,4 +32,4 @@ class BookingModal extends Component {
    }
 }
 
-export default connect(null, actions)(BookingModal);
+export default withRouter(connect(null, actions)(BookingModal));

@@ -19,6 +19,7 @@ export const createEvent = event =>
       try {
          // debugger
          await firestore.add(`bookings`, newBooking);
+         // debugger
          dispatch(closeModal())
          console.log("%cdone???", "color:red;font-size:18px")
          toastr.success('Success', 'Boking has been created');

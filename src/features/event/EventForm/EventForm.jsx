@@ -19,7 +19,8 @@ const mapState = (state, ownProps) => {
 
    return {
 
-      properties: state.firestore.ordered.properties
+      properties: state.firestore.ordered.properties,
+      auth: state.firebase.auth
    };
 
 }
@@ -72,8 +73,7 @@ class EventForm extends Component {
       
       const newValues = {...values, name:this.props.name}
       this.props.createEvent(newValues);
-      // this.props.close;
-      this.props.history.push('/profile/${}')
+      this.props.history.push(`/profile/${this.props.auth.uid}`)
 
    };
    // selectorMaker = () => {
@@ -94,7 +94,8 @@ class EventForm extends Component {
          displayValues,
          name,
          dateRanges,
-         folded
+         folded,
+         handleSubmit
       } = this.props;
       return (
          <Grid>
@@ -102,7 +103,7 @@ class EventForm extends Component {
             <Grid.Column width={12}>
                {/* <Segment color='orange'  > */}
                   <Header sub color="teal" content="Create Booking" /> 
-                  <Form onSubmit={this.props.handleSubmit(this.onFormSubmit) }>
+                  <Form onSubmit={handleSubmit(this.onFormSubmit) }>
                      {/* <Field
                         name="Property"
                         type="text"

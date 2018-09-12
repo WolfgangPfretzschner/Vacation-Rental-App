@@ -68,6 +68,8 @@ export const searchForAvailableProperties = (inputValues) =>
             let dat = { ...properties1Snap.docs[i].data(), id: properties1Snap.docs[i].id };
             props.push(dat);
          }
+         let unique = [...new Set(allUnavailable)]
+         
          let res = props.filter(prop => !allUnavailable.map(obj => obj.name).includes(prop.name) && 
                            Number(prop.bedrooms) >= Number(inputValues.rooms) &&
                            prop.city === inputValues.city
