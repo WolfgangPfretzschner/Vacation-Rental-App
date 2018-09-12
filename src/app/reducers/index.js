@@ -12,6 +12,7 @@ import eventReducer from '../../features/event/eventReducer';
 import testReducer from '../../features/testarea/testReducer';
 import searchReducer from '../../features/propertySearch/propertySearchReducer';
 import { reducer as toastrReducer } from 'react-redux-toastr';
+import bookingsReducer from '../../features/singleProp/singlePropReducer'
 
 const rootReducer = combineReducers({
    firebase: firebaseReducer,
@@ -24,7 +25,8 @@ const rootReducer = combineReducers({
    events: eventReducer,
    test: testReducer,
    toastr: toastrReducer,
-   search: searchReducer
+   search: searchReducer,
+   bookings: bookingsReducer
 });
 
 export default rootReducer;

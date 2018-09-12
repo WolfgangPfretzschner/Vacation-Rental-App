@@ -53,7 +53,7 @@ class NavBar extends Component {
                   F R G
                </Menu.Item>
                <Menu.Item as={NavLink} to="/properties" name="Properties" />
-               <Menu.Item as={NavLink} to="/notes" name="DateRangePicker" />
+               {/* <Menu.Item as={NavLink} to="/notes" name="DateRangePicker" /> */}
                {/* {authenticated && (
                   <Menu.Item as={NavLink} to="/notes" name="Create Booking" />
                )} */}

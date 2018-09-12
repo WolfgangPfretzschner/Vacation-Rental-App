@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchProperties } from "../actions/index";
+import { fetchBookingsForProp } from "../features/singleProp/singlePropActions";
+import Moment from 'moment';
+import { extendMoment } from 'moment-range';
 import { withFirestore, firebaseConnect, isEmpty } from "react-redux-firebase";
 import { Grid, Header, Icon, Item, Button, Segment, Image } from 'semantic-ui-react';
 import SlickSlider from '../features/slider/slick-slider'
@@ -8,6 +11,7 @@ import DateRangePicker from '../dateRangePicker/DateRangePicker'
 import GoogleMap from '../components/MyGoogleMap'
 import { openModal } from "../modals/modalActions";
 
+const moment = extendMoment(Moment)
 
 const mapState = (state, ownProps) => {
    let property = {};
@@ -19,37 +23,71 @@ const mapState = (state, ownProps) => {
    return {
       property,
       auth: state.firebase.auth,
-      profile: state.firebase.profile
+      profile: state.firebase.profile,
+      bookings: state.bookings
    };
 };
 
 const actions = {
-   fetchProperties,
+   fetchBookingsForProp,
    openModal
 }
 
+
 class SingleProperty extends Component {
-   componentDidMount() {
-      // debugger
-      const { firestore, match} = this.props;
-      let property = firestore.get(`properties/${match.params.id}`);
-      // debugger
+   async componentDidMount() {
+      const { firestore, match, property} = this.props;
+      let thisProp = await firestore.get(`properties/${match.params.id}`);
+      let name = await  thisProp.data().name
+      await this.props.fetchBookingsForProp(name)
+      // await this.dateMoments()
    }
 
    // async componentWillUnmount() {
    //    const { firestore, match } = this.props;
    //    await firestore.unsetListener(`properties/${match.params.id}`);
    // }
+   
    handleBookingClick = () => {
       console.log("%cclick modal ","color:red;font-size:18px",)
       const authenticated = this.props.auth.isLoaded && !this.props.auth.isEmpty;
       // debugger
       authenticated ? 
-         this.props.openModal("BookingModal", {name:this.props.property.name}) : 
-         this.props.openModal('UnauthModal')
+      this.props.openModal("BookingModal", 
+      {name:this.props.property.name, 
+         dateRanges:this.dateMoments(),
+         folded:true }) : 
+      this.props.openModal('UnauthModal')
       
    };
+
+   dateMoments = () => {
+      return this.props.bookings.map( (booking) => { 
+         let start = moment.unix(booking.checkin_date.seconds)
+         let end = moment.unix(booking.checkout_date.seconds)
+         let mom = moment.range(start, end)
+         return {state:"unavailable", range:mom }
+      }) 
+   }
+
    render() {
+      // const dateRanges = [
+      //    {
+      //       state: "enquire",
+      //       range: moment.range(
+      //          moment() .add(2, "weeks") .subtract(5, "days"),
+      //          moment() .add(2, "weeks") .add(3, "days")
+      //       )
+      //    },
+      //    {
+      //       state: "unavailable",
+      //       range: moment.range(
+      //          moment().add(3, "weeks"),
+      //          moment() .add(3, "weeks") .add(5, "days")
+      //       )
+      //    }
+      // ];
+      const dateRanges = this.dateMoments()
       const { auth, profile, property } = this.props;
       return (
          <div className="singleProperty">
@@ -162,7 +200,7 @@ class SingleProperty extends Component {
                </Grid>
             </Segment>
             <Segment>
-               {/* <DateRangePicker/> */}
+               <DateRangePicker input={{input:{value:{start: null, end: null}}}}  numCals={3} dateRanges={dateRanges} folded={true} />
 
             </Segment>
          </div>

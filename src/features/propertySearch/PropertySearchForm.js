@@ -2,21 +2,24 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Form, Segment, Button, Label, Divider } from "semantic-ui-react";
 import { Field, reduxForm } from "redux-form";
-import { combineValidators, isRequired } from "revalidate";
+
 import TextInput from "../../app/common/form/TextInput";
 import DateRPicker from "../../dateRangePicker/DateRangePicker";
 import { searchForAvailableProperties } from "./searchFormActions";
 import { firestoreConnect } from "react-redux-firebase";
+import { combineValidators, isRequired } from 'revalidate'
+import SelectInput from "../../app/common/form/SelectInput";
+
 
 const actions = {
    searchForAvailableProperties
 };
 
-// const validate = combineValidators({
-//    displayName: isRequired("displayName"),
-//    email: isRequired("email"),
-//    password: isRequired("password")
-// });
+const validate = combineValidators({
+   city: isRequired("city"),
+   rooms: isRequired("rooms"),
+   datesToSearch: isRequired("datesToSearch")
+});
 
 const stateDefinitions = {
    available: {
@@ -50,6 +53,26 @@ class PropertySearchForm extends Component{
    // componentDidMount(){
    //    this.props.searchForAvailableProperties()
    // }
+   citySelectorMaker = () => {
+      if (this.props.properties === undefined) {
+         null
+      } else {
+         let cities = this.props.properties.map(prop => prop.city)
+         let unique = [...new Set(cities)]
+         return  unique.map(city => { return { key: city, text: city, value: city } })
+         // debugger
+      }
+   }
+   roomSelectorMaker = () => {
+      if (this.props.properties === undefined) {
+         null
+      } else {
+         let bedrooms = this.props.properties.map(prop => prop.bedrooms)
+         let unique = [...new Set(bedrooms)]
+         return  unique.map(rooms => { return { key: rooms, text: rooms, value: rooms } })
+         // debugger
+      }
+   }
 
    render(){
 
@@ -59,7 +82,9 @@ class PropertySearchForm extends Component{
          displayValues,
          stateDefinitions,
          searchForAvailableProperties,
-         properties } = this.props
+         properties,
+         folded,
+      } = this.props
 
       return (
          <div>
@@ -67,19 +92,27 @@ class PropertySearchForm extends Component{
                <Form
                   size="large"
                   onSubmit={handleSubmit(searchForAvailableProperties)}
-               >
-                  <Field
+               >  
+                <Field
+                        name="city"
+                        type="text"
+                        component={SelectInput}
+                        options={this.citySelectorMaker()}
+                        placeholder="Select City"
+                     />
+                <Field
+                        name="rooms"
+                        type="text"
+                        component={SelectInput}
+                        options={this.roomSelectorMaker()}
+                        placeholder="Select number of bedrooms"
+                     />
+                  {/* <Field
                      name="displayName"
                      type="text"
                      component={TextInput}
                      placeholder="City"
-                  />
-                  <Field
-                     name="rooms"
-                     type="text"
-                     component={TextInput}
-                     placeholder="Rooms"
-                  />
+                  /> */}
                   <Field
                      name="datesToSearch"
                      type="text"
@@ -89,6 +122,8 @@ class PropertySearchForm extends Component{
                      placeholder="Checkout date"
                      displayValues={displayValues}
                      stateDefinitions={stateDefinitions}
+                     numCals={2}
+                     folded={folded}
                   />
                   {error && (
                      <Label basic color="red">
@@ -116,4 +151,4 @@ class PropertySearchForm extends Component{
 export default connect(
    mapState,
    actions
-)(firestoreConnect([{collection: "properties"}])(reduxForm({ form: "propertySearchForm" })(PropertySearchForm)));
+)(firestoreConnect([{collection: "properties"}])(reduxForm({ form: "propertySearchForm", validate })(PropertySearchForm)));

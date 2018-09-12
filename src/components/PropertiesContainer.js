@@ -38,13 +38,13 @@ class PropertiesContainer extends Component {
    }
   
    render() {
-      const { classes, properties } = this.props;
+      const { classes, properties, search } = this.props;
       
       return (
          <Grid columns='equal' className="app">
          <Grid.Row streched>
            <Grid.Column >
-           <PropertyContent properties={properties} />
+           <PropertyContent properties={properties} search={search}/>
            </Grid.Column>
            <Grid.Column>
              <PropertySidebar />

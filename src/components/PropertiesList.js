@@ -28,7 +28,7 @@ class PropertiesList extends Component {
 
       return  <div>
             <div style={{width:'640px'}}>
-               <PropertSearchForm />
+               <PropertSearchForm folded={false} />
             </div>
             <div style={{paddingTop: '20px'}}>
             <Card.Group>{this.renderList()}</Card.Group>

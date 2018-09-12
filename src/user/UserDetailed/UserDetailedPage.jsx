@@ -9,9 +9,9 @@ import UserDetailedDescription from './UserDetailedDescription'
 import UserDetailedPhotos from './UserDetailedPhotos'
 import UserDetailedSidebar from './UserDetailedSidebar'
 import UserDetailedEvents from './UserDetailedEvents'
-import { userDetailedQuery } from '../userQueries'
+// import { userDetailedQuery } from '../userQueries'
 import LoadingComponent from '../../layout/LoadingComponent'
-import { getUserEvents, followUser, unfollowUser } from '../userActions'
+// import { getUserEvents, followUser, unfollowUser } from '../userActions'
 
 const mapState = (state, ownProps) => {
   let userUid = null;

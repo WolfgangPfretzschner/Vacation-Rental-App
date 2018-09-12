@@ -7,7 +7,7 @@ import EventForm from '../features/event/EventForm/EventForm';
 
 const actions = {closeModal};
 
-class LoginModal extends Component {
+class BookingModal extends Component {
    render() {
       return (
          <Modal
@@ -20,7 +20,11 @@ class LoginModal extends Component {
                 </Modal.Header>
             <Modal.Content>
                <Modal.Description>
-                  <EventForm name={this.props.name}/>
+                  <EventForm name={this.props.name} 
+                  close={this.props.closeModal} 
+                  dateRanges={this.props.dateRanges} folded={this.props.folded} 
+                  // pro={this.pro}
+                  />
                </Modal.Description>
             </Modal.Content>
          </Modal>
@@ -28,4 +32,4 @@ class LoginModal extends Component {
    }
 }
 
-export default connect(null, actions)(LoginModal);
+export default connect(null, actions)(BookingModal);

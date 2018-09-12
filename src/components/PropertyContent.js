@@ -20,11 +20,22 @@ class Content extends Component {
       super(props);
    }
    markersFunc = () => {
-      return this.props.properties === undefined ? 
-      null :
-      this.props.properties.map( obj => {return {name:obj.name, lat:obj.lat, lng:obj.lng }}) 
+      // debugger
+      if (this.props.properties && this.props.search.length == []) {
+         return this.props.properties.map( obj => {return {name:obj.name, lat:obj.lat, lng:obj.lng }}
+         );
+      } else {
+         return this.props.search.map( obj => {return {name:obj.name, lat:obj.lat, lng:obj.lng }}
+         );
+      }
+   };
 
-   }
+   // markersFunc = () => {
+   //    return this.props.properties === undefined ? 
+   //    null :
+   //    this.props.properties.map( obj => {return {name:obj.name, lat:obj.lat, lng:obj.lng }}) 
+
+   // }
    render() {
       const {classes, properties } = this.props
       console.log("%cprops container","color:red;font-size:18px",this.props)

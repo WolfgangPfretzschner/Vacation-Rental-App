@@ -82,7 +82,8 @@ body {
 
 .ui.main.container,
 .main.segment {
-  margin-top: 9em;
+  margin-top: 7em;
+  width: 80vw;
 }
 
 .ui.center.aligned.segment.attendance-preview {

@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { reduxForm, Field } from "redux-form";
+import { withRouter } from 'react-router-dom'
 import { withFirestore } from "react-redux-firebase";
 import Script from "react-load-script";
 import { geocodeByAddress, getLatLng } from "react-places-autocomplete";
@@ -34,61 +35,46 @@ const actions = {
 
 
 
-// const validate = combineValidators({
-//    title: isRequired({ message: "The event title is required" }),
-//    category: isRequired({ message: "Please provide a category" }),
-//    description: composeValidators(
-//       isRequired({ message: "Please enter a description" }),
-//       hasLengthGreaterThan(4)({
-//          message: "Description needs to be at least 5 characters"
-//       })
-//    )(),
-//    city: isRequired("city"),
-//    venue: isRequired("venue"),
-//    date: isRequired("date")
-// });
+const validate = combineValidators({
+   title: isRequired({ message: "The event title is required" }),
+   category: isRequired({ message: "Please provide a category" }),
+   description: composeValidators(
+      isRequired({ message: "Please enter a description" }),
+      hasLengthGreaterThan(4)({
+         message: "Description needs to be at least 5 characters"
+      })
+   )(),
+   city: isRequired("city"),
+   venue: isRequired("venue"),
+   date: isRequired("date")
+});
 
 class EventForm extends Component {
-   state = {
-      cityLatLng: {},
-      venueLatLng: {},
-      scriptLoaded: false
-   };
+ 
+   // async componentDidMount() {
+   //    const { firestore, match } = this.props;
+   //    await firestore.setListener(`bookings/`);
+   //    await firestore.setListener(`properties/`);
+   // }
 
-   async componentDidMount() {
-      const { firestore, match } = this.props;
-      await firestore.setListener(`bookings/`);
-      await firestore.setListener(`properties/`);
-   }
+   // async componentWillUnmount() {
+   //    const { firestore, match } = this.props;
+   //    await firestore.unsetListener(`bookings/`);
+   //    await firestore.unsetListener(`properties/`);
+   // }
 
-   async componentWillUnmount() {
-      const { firestore, match } = this.props;
-      await firestore.unsetListener(`bookings/`);
-      await firestore.unsetListener(`properties/`);
-   }
-
-   handleScriptLoaded = () => this.setState({ scriptLoaded: true });
 
    sampleHanlde = () => {
      this.props.seedProperties()
    }
 
    onFormSubmit = values => {
-      // let checkIn =  values.checkin_date._d
-      // let checkOut =  values.checkout_date._d
-      // let newValues = {...values, checkin_date: checkIn, checkout_date:checkOut }
-      // debugger
-      //  if (this.props.initialValues.id) {
-      //    if (Object.keys(values.venueLatLng).length === 0) {
-      //      values.venueLatLng = this.props.event.venueLatLng
-      //    }
-      //    this.props.updateEvent(values);
-      //    this.props.history.goBack();
-      //  } else {
-         const newValues = {...values, name:this.props.name}
+      
+      const newValues = {...values, name:this.props.name}
       this.props.createEvent(newValues);
-      // this.props.history.push('/properties');
-      //  }
+      // this.props.close;
+      this.props.history.push('/profile/${}')
+
    };
    // selectorMaker = () => {
    //    return this.props.properties === undefined ?
@@ -97,6 +83,7 @@ class EventForm extends Component {
    //  }
   
    render() {
+      
       const {
          invalid, 
          submitting,
@@ -105,18 +92,17 @@ class EventForm extends Component {
          cancelToggle,
          loading,
          displayValues,
-         name
+         name,
+         dateRanges,
+         folded
       } = this.props;
       return (
          <Grid>
-            {/* <Script
-               url="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1Oy3Ic6JyE6RR4eEbEFw2T-ynXjjWzTc&libraries=places"
-               onLoad={this.handleScriptLoaded}
-            /> */}
+         
             <Grid.Column width={12}>
                {/* <Segment color='orange'  > */}
                   <Header sub color="teal" content="Create Booking" /> 
-                  <Form onSubmit={this.props.handleSubmit(this.onFormSubmit)}>
+                  <Form onSubmit={this.props.handleSubmit(this.onFormSubmit) }>
                      {/* <Field
                         name="Property"
                         type="text"
@@ -149,8 +135,11 @@ class EventForm extends Component {
                         dateFormat="YYYY-MM-DD HH:mm"
                         timeFormat="HH:mm"
                         //  showTimeSelect
-                        value={{value:{start: null, end: null}}}
+                        // value={{value:{start: null, end: null}}}
+                        folded={folded}
+                        dateRanges={dateRanges}
                         placeholder="Checkout date"
+                        numCals={2}
                         // displayValues={displayValues}
                      />
                      <Button
@@ -163,7 +152,7 @@ class EventForm extends Component {
                      </Button>
                      <Button
                         disabled={loading}
-                        // onClick={this.props.history.goBack}
+                        onClick={this.props.close}
                         type="button"
                      >
                         Cancel
@@ -187,7 +176,7 @@ class EventForm extends Component {
    }
 }
 
-export default withFirestore(
+export default withRouter(withFirestore(
    connect(
       mapState,
       actions
@@ -196,4 +185,4 @@ export default withFirestore(
          EventForm
       )
    )
-);
+));

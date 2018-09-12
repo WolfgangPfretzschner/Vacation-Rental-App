@@ -13,7 +13,7 @@ class DateRPicker extends React.Component {
       const today = moment();
 
       this.state = {
-         isOpen: false,
+         isOpen: this.props.folded,
          value: moment.range(today.clone().subtract(7, "days"), today.clone())
       };
    }
@@ -50,10 +50,9 @@ class DateRPicker extends React.Component {
          </div>
       );
    };
-
+   // meta: {touched, error},
    render() {
-      console.log("%cprops ","color:red;font-size:18px",this.props)
-      const { input: {value, onChange, onBlur, ...restInput}, width, placeholder,displayValues,meta: {touched, error}, ...rest } = this.props
+      const { input: {value, onChange, onBlur, ...restInput}, width, dateRanges, numCals, placeholder,displayValues, ...rest } = this.props
       
       const stateDefinitions = {
          available: {
@@ -70,32 +69,26 @@ class DateRPicker extends React.Component {
             label: "Unavailable"
          }
       };
-      const dateRanges = [
-         {
-            state: "enquire",
-            range: moment.range(
-               moment()
-                  .add(2, "weeks")
-                  .subtract(5, "days"),
-               moment()
-                  .add(2, "weeks")
-                  .add(3, "days")
-            )
-         },
-         {
-            state: "unavailable",
-            range: moment.range(
-               moment().add(3, "weeks"),
-               moment()
-                  .add(3, "weeks")
-                  .add(5, "days")
-            )
-         }
-      ];
+      // const dateRanges = [
+      //    {
+      //       state: "enquire",
+      //       range: moment.range(
+      //          moment() .add(2, "weeks") .subtract(5, "days"),
+      //          moment() .add(2, "weeks") .add(3, "days")
+      //       )
+      //    },
+      //    {
+      //       state: "unavailable",
+      //       range: moment.range(
+      //          moment().add(3, "weeks"),
+      //          moment() .add(3, "weeks") .add(5, "days")
+      //       )
+      //    }
+      // ];
 
       return (
          <div>
-            <div>{this.renderSelectionValue()}</div>
+            {/* <div>{this.renderSelectionValue()}</div> */}
 
             <div>
                <Button
@@ -106,26 +99,26 @@ class DateRPicker extends React.Component {
                   type="button"
                   // value="Toggle date picker"
                   onClick={this.onToggle}
-               >Dates Picker</Button>
+               >Open Dates Picker</Button>
             </div>
 
             {this.state.isOpen && (
-               <Form.Field error={touched && !!error} width={width}>
+               <Form.Field width={width}>
                <DateRangePicker
                   {...rest}
                   firstOfWeek={1}
-                  numberOfCalendars={2}
+                  numberOfCalendars={numCals}
                   selectionType="range"
                   minimumDate={new Date()}
                   stateDefinitions={stateDefinitions}
-                  // dateStates={dateRanges}
+                  dateStates={dateRanges}
                   defaultState="available"
                   showLegend={true}
                   value={value}
                   onSelect={onChange}
                   {...restInput}
                />
-               {touched && error && <Label basic color='red'>{error}</Label>}
+               {/* {touched && error && <Label basic color='red'>{error}</Label>} error={touched && !!error}  */}
                </Form.Field>
              )}
          </div>

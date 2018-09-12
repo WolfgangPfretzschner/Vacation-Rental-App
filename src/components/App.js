@@ -6,6 +6,7 @@ import NoteContainer from "./NoteContainer";
 import FourOhFour from "./FourOhFour";
 import { Switch, Route } from "react-router-dom";
 import PropertiesContainer from "./PropertiesContainer";
+import UserPage from '../user/UserDetailed/UserPage'
 // import CssBaseline from "@material-ui/core/CssBaseline";
 import NavBarM from "../nav/NavBar/NavBarM";
 import EventForm from "../features/event/EventForm/EventForm";
@@ -37,14 +38,14 @@ class App extends Component {
             render={() => (
             <div>
                <NavBarM />
-               <Container fluid className="main">
+               <Container  className="main">
                   <Switch>
                   <Route path="/notes" component={EventForm} />
                   <Route path="/properties" component={PropertiesContainer} />
                   <Route path="/property/:id" component={PropertySingle} />
                   <Route path="/DateRangePicker" component={DateRangePicker} />
                   {/* <Route path="/people" component={PeopleDashboard} /> */}
-                  {/* <Route path="/profile/:id" component={UserDetailedPage} /> */}
+                  <Route path="/profile/:id" component={UserPage} />
                   {/* <Route path="/settings" component={SettingsDashboard} /> */}
                   {/* <Route path="/createEvent" component={EventForm} /> */}
                   </Switch>
