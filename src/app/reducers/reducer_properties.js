@@ -9,7 +9,7 @@ export default function propertiesReducer(
 ) {
    switch (action.type) {
       case FETCH_PROPS:
-         console.log("%cfrom reducer", "color:orange;font-size:18px", action);
+         //console.log("%cfrom reducer", "color:orange;font-size:18px", action);
          return { ...state, properties: action.payload };
 
       default:

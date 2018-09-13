@@ -19,7 +19,7 @@ export const fetchBookingsForProp = (name) =>
          let filteredBookings = data.filter(obj => obj.name === name)
 
 
-         console.log("%cbookings fetch", "color:purple;font-size:18px", filteredBookings);
+         //console.log("%cbookings fetch", "color:purple;font-size:18px", filteredBookings);
          dispatch({ type: FETCH_BOOKINGS, payload: { filteredBookings } })
       } catch (error) {
          console.log(error);

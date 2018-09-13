@@ -49,7 +49,7 @@ class SingleProperty extends Component {
    // }
    
    handleBookingClick = () => {
-      console.log("%cclick modal ","color:red;font-size:18px",)
+      //console.log("%cclick modal ","color:red;font-size:18px",)
       const authenticated = this.props.auth.isLoaded && !this.props.auth.isEmpty;
       // debugger
       authenticated ? 

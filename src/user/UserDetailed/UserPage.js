@@ -41,7 +41,7 @@ class UserPage extends Component {
 
 
    bookingMaker = () => {
-      console.log("%cboooo", "color:red;font-size:18px", this.props.bookings);
+      //console.log("%cboooo", "color:red;font-size:18px", this.props.bookings);
       if (this.props.bookings === undefined) {
          return (
             <div>
@@ -71,7 +71,7 @@ class UserPage extends Component {
 
    render() {
       const { bookings, auth } = this.props;
-      console.log("%cprops", "color:red;font-size:18px", this.props);
+      //console.log("%cprops", "color:red;font-size:18px", this.props);
       return (
          <div>
             <Segment>

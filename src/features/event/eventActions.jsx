@@ -10,7 +10,7 @@ import { property1 ,property2,property3,property4,property5,property6, } from '.
 
 export const createEvent = event =>
    async (dispatch, getState, { getFirebase, getFirestore }) => {
-      console.log("%cprops in create booking","color:blue;font-size:18px",event)
+      //console.log("%cprops in create booking","color:blue;font-size:18px",event)
       const firestore = getFirestore();
       const firebase = getFirebase();
       const user = firebase.auth().currentUser;
@@ -21,7 +21,7 @@ export const createEvent = event =>
          await firestore.add(`bookings`, newBooking);
          // debugger
          dispatch(closeModal())
-         console.log("%cdone???", "color:red;font-size:18px")
+         //console.log("%cdone???", "color:red;font-size:18px")
          toastr.success('Success', 'Boking has been created');
       } catch (error) {
          toastr.error('Oops', 'Something went wrong');
@@ -31,47 +31,47 @@ export const createEvent = event =>
  
 export const seedProperties = ()  => 
 async (dispatch, getState, { getFirebase, getFirestore }) => {
-   console.log("%cseed click","color:red;font-size:18px",)
+   //console.log("%cseed click","color:red;font-size:18px",)
    const firestore = getFirestore();
    const firebase = getFirebase();
    try {
          await firestore.add(`properties`, property1);
-         console.log("%cdone???", "color:red;font-size:18px")
+         //console.log("%cdone???", "color:red;font-size:18px")
          toastr.success('Success', 'Boking has been created')
       } catch (error) {
          toastr.error('Oops', 'Something went wrong');
       }
       try {
          await firestore.add(`properties`, property2);
-         console.log("%cdone???", "color:red;font-size:18px")
+         //console.log("%cdone???", "color:red;font-size:18px")
          toastr.success('Success', 'Boking has been created')
       } catch (error) {
          toastr.error('Oops', 'Something went wrong');
       }
       try {
          await firestore.add(`properties`, property3);
-         console.log("%cdone???", "color:red;font-size:18px")
+         //console.log("%cdone???", "color:red;font-size:18px")
          toastr.success('Success', 'Boking has been created')
       } catch (error) {
          toastr.error('Oops', 'Something went wrong');
       }
       try {
          await firestore.add(`properties`, property4);
-         console.log("%cdone???", "color:red;font-size:18px")
+         //console.log("%cdone???", "color:red;font-size:18px")
          toastr.success('Success', 'Boking has been created')
       } catch (error) {
          toastr.error('Oops', 'Something went wrong');
       }
       try {
          await firestore.add(`properties`, property5);
-         console.log("%cdone???", "color:red;font-size:18px")
+         //console.log("%cdone???", "color:red;font-size:18px")
          toastr.success('Success', 'Boking has been created')
       } catch (error) {
          toastr.error('Oops', 'Something went wrong');
       }
       try {
          await firestore.add(`properties`, property6);
-         console.log("%cdone???", "color:red;font-size:18px")
+         //console.log("%cdone???", "color:red;font-size:18px")
          toastr.success('Success', 'Boking has been created')
       } catch (error) {
          toastr.error('Oops', 'Something went wrong');

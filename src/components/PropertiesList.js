@@ -27,7 +27,7 @@ class PropertiesList extends Component {
    render() {
 
       return  <div>
-            <div style={{width:'640px'}}>
+            <div >
                <PropertSearchForm folded={false} />
             </div>
             <div style={{paddingTop: '20px'}}>
@@ -52,3 +52,4 @@ export default connect(
    mapStateToProps,
    mapDispatchToProps
 )(firestoreConnect([{ collection: "properties" }])(PropertiesList));
+// style={{width:'640px'}}

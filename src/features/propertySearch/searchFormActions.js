@@ -5,7 +5,7 @@ import { asyncActionStart, asyncActionFinish, asyncActionError } from '../../asy
 
 export const searchForAvailableProperties = (inputValues) => 
    async (dispatch, getState) => {
-      console.log("%cinputValues","color:green;font-size:18px",inputValues)
+      //console.log("%cinputValues","color:green;font-size:18px",inputValues)
       let today =Date.now()
       let ttoday = new Date(Date.now())
       const firestore = firebase.firestore();
@@ -74,9 +74,11 @@ export const searchForAvailableProperties = (inputValues) =>
                            Number(prop.bedrooms) >= Number(inputValues.rooms) &&
                            prop.city === inputValues.city
                            )
-         
+         // if(res.length === 0 ){
+         //    res = "No homes available"
+         // }
          // debugger
-         console.log("%cquery log", "color:purple;font-size:18px", res);
+         //console.log("%cquery log", "color:purple;font-size:18px", res);
          dispatch({type: FETCH_PROPS, payload:{res} })
       } catch (error) {
          console.log(error);

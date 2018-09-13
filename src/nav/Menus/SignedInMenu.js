@@ -60,7 +60,7 @@ class SpeedDials extends React.Component {
       }));
    };
    handleLogout = () => {
-      console.log("%ctest","color:red;font-size:18px",)
+      //console.log("%ctest","color:red;font-size:18px",)
       this.props.firebase.logout();
       this.props.history.push("/");
       this.setState(state => ({

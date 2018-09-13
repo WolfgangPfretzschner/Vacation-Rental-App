@@ -18,13 +18,13 @@ export default class CenterMode extends Component {
     // componentDidUpdate() {
         
     //     if(this.props.pics !== this.state.picsSrc){
-    //         this.setState({picsSrc: this.props.pics}, console.log("%cslider did  update","color:pink;font-size:14px",this.props.pics))
+    //         this.setState({picsSrc: this.props.pics}, //console.log("%cslider did  update","color:pink;font-size:14px",this.props.pics))
     //     }
     // }
     // pics = ["a","b" ,"c", "d"]
     
     render() {
-        console.log("%cnewSlides in MySlider","color:pink;font-size:14px",this.props.pics)
+        //console.log("%cnewSlides in MySlider","color:pink;font-size:14px",this.props.pics)
         const pics = this.picsMaker()
         // debugger
         const settings = {

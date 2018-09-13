@@ -39,7 +39,7 @@ class PropertytCard extends Component {
    render() {
       const { classes, prop, name, } = this.props;
       
-      console.log("%cprops in card", "color:blue;font-size:18px", this.props);
+      //console.log("%cprops in card", "color:blue;font-size:18px", this.props);
       const shortDescription = this.limitContent(prop.description, 45)
       return (
          <Paper className={classes.paper}>

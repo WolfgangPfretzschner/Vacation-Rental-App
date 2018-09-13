@@ -22,7 +22,7 @@ class SimpleExample extends Component {
 
    render() {
       const {zoom, lat, lng, markers } = this.props
-      console.log("%cprops map","color:red;font-size:18px",this.props)
+      //console.log("%cprops map","color:red;font-size:18px",this.props)
       return (
          <div id="mapid">
             <Typography className="h2 mb-16">Simple Map Example</Typography>

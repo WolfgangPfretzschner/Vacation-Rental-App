@@ -58,7 +58,7 @@ class NoteContainer extends Component {
     }
 
     addNewDefaultNote = () => {
-        // console.log("%cclicked","color:green;font-size:18px",)
+        // //console.log("%cclicked","color:green;font-size:18px",)
     }
     
     changeView = () => {
