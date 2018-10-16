@@ -21,6 +21,10 @@ class Content extends Component {
    }
    markersFunc = () => {
       // debugger
+      if (this.props.properties && typeof this.props.search == 'string') {
+         return [{name:"No Homes for the search", lat:26.573981, lng:-81.913450 }]
+         ;
+      } 
       if (this.props.properties && this.props.search.length == []) {
          return this.props.properties.map( obj => {return {name:obj.name, lat:obj.lat, lng:obj.lng }}
          );

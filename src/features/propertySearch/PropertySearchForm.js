@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Form, Segment, Button, Label, Divider } from "semantic-ui-react";
-import { Field, reduxForm } from "redux-form";
+import { Field, reduxForm, reset } from "redux-form";
 
 import TextInput from "../../app/common/form/TextInput";
 import DateRPicker from "../../dateRangePicker/DateRangePicker";
-import { searchForAvailableProperties } from "./searchFormActions";
+import { searchForAvailableProperties,clearSearch } from "./searchFormActions";
 import { firestoreConnect } from "react-redux-firebase";
 import { combineValidators, isRequired } from 'revalidate'
 import SelectInput from "../../app/common/form/SelectInput";
 
 
 const actions = {
-   searchForAvailableProperties
+   searchForAvailableProperties,
+   clearSearch 
 };
 
 const validate = combineValidators({
@@ -73,6 +74,11 @@ class PropertySearchForm extends Component{
          // debugger
       }
    }
+   clearAll = () => {
+      console.log("%cclcik from first","color:red;font-size:18px",)
+      this.props.clearSearch();
+      
+   }
 
    render(){
 
@@ -91,7 +97,7 @@ class PropertySearchForm extends Component{
             <Segment>
                <Form
                   size="large"
-                  onSubmit={handleSubmit(searchForAvailableProperties)}
+                  // onSubmit={handleSubmit(searchForAvailableProperties)}
                >  
                 <Field
                         name="city"
@@ -120,7 +126,7 @@ class PropertySearchForm extends Component{
                      dateFormat="YYYY-MM-DD HH:mm"
                      timeFormat="HH:mm"
                      placeholder="Checkout date"
-                     displayValues={displayValues}
+                     // displayValues={displayValues}
                      stateDefinitions={stateDefinitions}
                      numCals={2}
                      folded={folded}
@@ -131,6 +137,7 @@ class PropertySearchForm extends Component{
                      </Label>
                   )}
                   <Button
+                  onClick={handleSubmit(searchForAvailableProperties)}
                      disabled={invalid || submitting}
                      fluid
                      size="large"
@@ -139,6 +146,16 @@ class PropertySearchForm extends Component{
                   >
                      Search
                </Button>
+                  {/* <Button
+                     // disabled={invalid || submitting}
+                     onClick={this.clearAll}
+                     fluid
+                     size="small"
+                     color="teal"
+                     style={{marginTop: '15px'}}
+                  >
+                     Clear
+               </Button> */}
                   {/* <Divider horizontal>Or</Divider> */}
                   {/* <SocialLogin/> */}
                </Form>
@@ -151,4 +168,4 @@ class PropertySearchForm extends Component{
 export default connect(
    mapState,
    actions
-)(firestoreConnect([{collection: "properties"}])(reduxForm({ form: "propertySearchForm", validate })(PropertySearchForm)));
+)(firestoreConnect([{collection: "properties"}])(reduxForm({ form: "propertySearchForm", enableReinitialize: true, validate })(PropertySearchForm)));

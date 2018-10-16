@@ -10,11 +10,9 @@ import UserPage from '../user/UserDetailed/UserPage'
 // import CssBaseline from "@material-ui/core/CssBaseline";
 import NavBarM from "../nav/NavBar/NavBarM";
 import EventForm from "../features/event/EventForm/EventForm";
-// import EventsDashBoard from "../features/event/EventDashboard/EventDashboard";
 import PropertySingle from './PropertySingle'
 import ModalManager from '../modals/ModalManager';
 import DateRangePicker from '../dateRangePicker/DateRangePicker'
-// import TestComponent from '../features/testarea/TestComponent'
  
 // const theme = createMuiTheme({
 //    palette: {
@@ -25,34 +23,23 @@ import DateRangePicker from '../dateRangePicker/DateRangePicker'
 //          main: '#ff9800',
 //       },
 //    },
-// });
+// }); 
 class App extends Component {
    render() {
       return (
       <div>
-      <ModalManager/>
-         <Switch>
-         </Switch>
-         <Route
-            path="/(.+)"
-            render={() => (
+            <ModalManager />
             <div>
                <NavBarM />
-               <Container  className="main">
+               <Container className="main">
                   <Switch>
-                  <Route path="/notes" component={EventForm} />
-                  <Route path="/properties" component={PropertiesContainer} />
-                  <Route path="/property/:id" component={PropertySingle} />
-                  <Route path="/DateRangePicker" component={DateRangePicker} />
-                  {/* <Route path="/people" component={PeopleDashboard} /> */}
-                  <Route path="/profile/:id" component={UserPage} />
-                  {/* <Route path="/settings" component={SettingsDashboard} /> */}
-                  {/* <Route path="/createEvent" component={EventForm} /> */}
+                     <Route exact path="/" component={PropertiesContainer} />
+                     <Route path="/properties" component={PropertiesContainer} />
+                     <Route path="/property/:id" component={PropertySingle} />
+                     <Route path="/profile/:id" component={UserPage} />
                   </Switch>
-                  </Container>
+               </Container>
             </div>
-            )}
-            />
       </div>
    );
 }

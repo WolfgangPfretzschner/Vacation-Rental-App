@@ -10,8 +10,8 @@ export const property1 = {
    price_per_week: "990",
    price_per_night:"135",
    cleaning_fee:"175",
-   lat: 26.571947,
-   lng:-81.987534,
+   lat: 26.625787,
+   lng:-81.594585,
 
    description:"This house is located on a gulf access canal and includes a boat dock and lift. Enjoy the beautiful SW Florida weather by sitting on the lanai or playing in the pool. 2 bikes, fishing poles and beach chairs available to complete your vacation.", 
 
@@ -35,7 +35,7 @@ export const property2= {
    lng:-81.977301,
    description:"Villa Oasis: Spacious Pool-/Spa-Home, ideal for 2 families. Gourmet kitchen, towels, bedding. Everything is there, just bring your personal stuff and enjoy Florida's sunny weather.",
 
-   primaryUrl:"https://firebasestorage.googleapis.com/v0/b/evernote-3a9c9.appspot.com/o/Oasis%2Fbath-guest.jpg?alt=media&token=fc64097d-ca6b-4d93-9f8e-abaa8b0ef80d",
+   primaryUrl:"https://firebasestorage.googleapis.com/v0/b/evernote-3a9c9.appspot.com/o/Oasis%2Fpool.jpg?alt=media&token=90f4b496-fdf5-4ac2-b229-5cb63160a03f",
 
    imgages:["https://firebasestorage.googleapis.com/v0/b/evernote-3a9c9.appspot.com/o/Oasis%2Fbath-guest.jpg?alt=media&token=fc64097d-ca6b-4d93-9f8e-abaa8b0ef80d","https://firebasestorage.googleapis.com/v0/b/evernote-3a9c9.appspot.com/o/Oasis%2Fbedroom1-1.jpg?alt=media&token=84f08533-83a7-4898-bb92-4762cf339fc8", "https://firebasestorage.googleapis.com/v0/b/evernote-3a9c9.appspot.com/o/Oasis%2Fbedroom1-2.jpg?alt=media&token=afc6e9ec-af68-488e-86d5-cf5b7e2dac17", "https://firebasestorage.googleapis.com/v0/b/evernote-3a9c9.appspot.com/o/Oasis%2Fbedroom3-1.jpg?alt=media&token=7b38cfb8-2474-452a-85da-85e71523ccef", "https://firebasestorage.googleapis.com/v0/b/evernote-3a9c9.appspot.com/o/Oasis%2Fbedroom3.jpg?alt=media&token=50154078-ceb9-4d7e-a164-00b6dc9584ca", "https://firebasestorage.googleapis.com/v0/b/evernote-3a9c9.appspot.com/o/Oasis%2Fcanal.jpg?alt=media&token=989885da-4b43-4ab5-9d3d-54d80adbb66c9", "https://firebasestorage.googleapis.com/v0/b/evernote-3a9c9.appspot.com/o/Oasis%2Fdining.jpg?alt=media&token=86c4e02a-8210-43ce-84f6-cfc2a1ec2513","https://firebasestorage.googleapis.com/v0/b/evernote-3a9c9.appspot.com/o/Oasis%2Ffront.jpg?alt=media&token=1b595abb-2adb-4652-a3ed-a34f13d9929a", "https://firebasestorage.googleapis.com/v0/b/evernote-3a9c9.appspot.com/o/Oasis%2Fkitchen.jpg?alt=media&token=766fc3f4-fd60-433d-9057-92ea06ba328f",
    "https://firebasestorage.googleapis.com/v0/b/evernote-3a9c9.appspot.com/o/Oasis%2Flanai-2-wide.jpg?alt=media&token=33167643-1da9-4285-bc46-0083010cbbfd",

@@ -11,7 +11,7 @@
       "classnames": "^2.2.6",
       "create-react-class": "^15.6.3",
       "cuid": "^2.1.1",
-      "date-fns": "^1.29.0",
+      "`-fns": "^1.29.0",
       "firebase": "^5.4.1",
       "fuse": "^0.4.0",
       "google-map-react": "^1.0.6",

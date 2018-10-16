@@ -169,7 +169,7 @@ class EventForm extends Component {
                      /> */}
                   </Form>
 
-                  <Button onClick={this.sampleHanlde}> click me </Button>
+                  <Button onClick={this.sampleHanlde}> seed </Button>
                {/* </Segment> */}
             </Grid.Column>
          </Grid>

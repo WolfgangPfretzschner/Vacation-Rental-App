@@ -13,6 +13,10 @@ class PropertiesList extends Component {
 
    renderList = () => {
       // debugger
+      if (this.props.properties && typeof this.props.search == 'string') {
+         return  <div style={{paddingLeft:"20px"}}> <h3> No Properties found for the search</h3></div> ;
+         };
+      
       if (this.props.properties && this.props.search.length == []) {
          return this.props.properties.map(prop => {
             return <PropertyCard prop={prop} key={prop.id} name={prop.name} />;

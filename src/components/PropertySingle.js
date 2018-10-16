@@ -200,7 +200,7 @@ class SingleProperty extends Component {
                </Grid>
             </Segment>
             <Segment>
-               <DateRangePicker input={{input:{value:{start: null, end: null}}}}  numCals={3} dateRanges={dateRanges} folded={true} />
+               <DateRangePicker input={{input:{value:{start: null, end: null}}}}  numCals={5} dateRanges={dateRanges} folded={true} />
 
             </Segment>
          </div>

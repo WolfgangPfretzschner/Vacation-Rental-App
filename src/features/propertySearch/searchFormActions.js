@@ -1,7 +1,8 @@
 import firebase from "../../firebase";
 import { toastr } from 'react-redux-toastr';
-import { FETCH_PROPS } from './propertySearchConstants';
+import { FETCH_PROPS, CLEAR_SEARCH } from './propertySearchConstants';
 import { asyncActionStart, asyncActionFinish, asyncActionError } from '../../async/asyncActions';
+import { reset } from "redux-form";
 
 export const searchForAvailableProperties = (inputValues) => 
    async (dispatch, getState) => {
@@ -74,9 +75,9 @@ export const searchForAvailableProperties = (inputValues) =>
                            Number(prop.bedrooms) >= Number(inputValues.rooms) &&
                            prop.city === inputValues.city
                            )
-         // if(res.length === 0 ){
-         //    res = "No homes available"
-         // }
+         if(res.length === 0 ){
+            res = "No homes available"
+         }
          // debugger
          //console.log("%cquery log", "color:purple;font-size:18px", res);
          dispatch({type: FETCH_PROPS, payload:{res} })
@@ -86,5 +87,8 @@ export const searchForAvailableProperties = (inputValues) =>
    };
  
 
-
+export const clearSearch = (dispatch) =>{
+   dispatch(reset('propertySearchForm'))
+   dispatch({type: CLEAR_SEARCH  } )  
+}
 
