@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-import Header from "./Header";
-import Navbar from "../nav/NavBar";
 import { Container } from 'semantic-ui-react';
-import NoteContainer from "./NoteContainer";
 import FourOhFour from "./FourOhFour";
 import { Switch, Route } from "react-router-dom";
 import PropertiesContainer from "./PropertiesContainer";
@@ -12,7 +9,6 @@ import NavBarM from "../nav/NavBar/NavBarM";
 import EventForm from "../features/event/EventForm/EventForm";
 import PropertySingle from './PropertySingle'
 import ModalManager from '../modals/ModalManager';
-import DateRangePicker from '../dateRangePicker/DateRangePicker'
  
 // const theme = createMuiTheme({
 //    palette: {
@@ -37,6 +33,9 @@ class App extends Component {
                      <Route path="/properties" component={PropertiesContainer} />
                      <Route path="/property/:id" component={PropertySingle} />
                      <Route path="/profile/:id" component={UserPage} />
+                     <Route path="/seed" component={EventForm} />
+                     
+                     <Route path="/" component={FourOhFour} />
                   </Switch>
                </Container>
             </div>
