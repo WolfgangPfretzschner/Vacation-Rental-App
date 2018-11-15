@@ -21,7 +21,7 @@ const UserDeteiledEvents = ({ events, eventsLoading, changeTab }) => {
         <Card.Group itemsPerRow={5}>
           {events &&
             events.map(event => (
-              <Card as={Link} to={`/event/${event.id}`} key={event.id}>
+              <Card as={Link} to={`/property/${event.id}`} key={event.id}>
                 <Image src={`/assets/categoryImages/${event.category}.jpg`} />
                 <Card.Content>
                   <Card.Header textAlign="center">{event.title}</Card.Header>

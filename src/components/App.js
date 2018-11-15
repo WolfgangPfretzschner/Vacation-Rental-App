@@ -6,7 +6,7 @@ import PropertiesContainer from "./PropertiesContainer";
 import UserPage from '../user/UserDetailed/UserPage'
 // import CssBaseline from "@material-ui/core/CssBaseline";
 import NavBarM from "../nav/NavBar/NavBarM";
-import EventForm from "../features/event/EventForm/EventForm";
+import EventForm from "../features/property/EventForm/EventForm";
 import PropertySingle from './PropertySingle'
 import ModalManager from '../modals/ModalManager';
  

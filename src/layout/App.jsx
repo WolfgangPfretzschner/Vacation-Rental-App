@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Container } from 'semantic-ui-react';
 import { Route, Switch } from 'react-router-dom';
-import EventDashboard from '../../features/event/EventDashboard/EventDashboard';
+import EventDashboard from '../../features/property/EventDashboard/EventDashboard';
 import NavBar from '../../features/nav/NavBar/NavBar';
-import EventForm from '../../features/event/EventForm/EventForm';
+import EventForm from '../../features/property/EventForm/EventForm';
 import SettingsDashboard from '../../features/user/Settings/SettingsDashboard';
 import UserDetailedPage from '../../features/user/UserDetailed/UserDetailedPage';
 import PeopleDashboard from '../../features/user/PeopleDashboard/PeopleDashboard';
-import EventDetailedPage from '../../features/event/EventDetailed/EventDetailedPage';
+import EventDetailedPage from '../../features/property/EventDetailed/EventDetailedPage';
 import HomePage from '../../features/home/HomePage';
 import TestComponent from '../../features/testarea/TestComponent';
 import ModalManager from '../../features/modals/ModalManager';
@@ -31,7 +31,7 @@ class App extends Component {
                 <Switch>
                   <Route path="/events" component={EventDashboard} />
                   <Route path="/test" component={TestComponent} />
-                  <Route path="/event/:id" component={EventDetailedPage} />
+                  <Route path="/property/:id" component={EventDetailedPage} />
                   <Route path="/manage/:id" component={UserIsAuthenticated(EventForm)} />
                   <Route path="/people" component={UserIsAuthenticated(PeopleDashboard)} />
                   <Route path="/profile/:id" component={UserIsAuthenticated(UserDetailedPage)} />

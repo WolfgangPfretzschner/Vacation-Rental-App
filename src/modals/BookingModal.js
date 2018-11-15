@@ -3,7 +3,7 @@ import {Modal} from 'semantic-ui-react';
 import {connect} from 'react-redux';
 import { withRouter } from 'react-router-dom'
 import {closeModal} from "./modalActions";
-import EventForm from '../features/event/EventForm/EventForm';
+import EventForm from '../features/property/EventForm/EventForm';
 
 const actions = {closeModal};
 

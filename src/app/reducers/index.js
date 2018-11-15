@@ -8,7 +8,7 @@ import modalsReducer from '../../modals/modalReducer';
 import propertiesReducer from "./reducer_properties";
 import authReducer from "./reducer_auth";
 import asyncReducer from '../../async/asyncReducer';
-import eventReducer from '../../features/event/eventReducer';
+import eventReducer from '../../features/property/eventReducer';
 import testReducer from '../../features/testarea/testReducer';
 import searchReducer from '../../features/propertySearch/propertySearchReducer';
 import { reducer as toastrReducer } from 'react-redux-toastr';
