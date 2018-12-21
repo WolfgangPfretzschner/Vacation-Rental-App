@@ -7,10 +7,11 @@ import { extendMoment } from 'moment-range';
 import { withFirestore, firebaseConnect, isEmpty } from "react-redux-firebase";
 import { Grid, Header, Icon, Item, Button, Segment, Image } from 'semantic-ui-react';
 import SlickSlider from '../features/slider/slick-slider'
+import ReactCarusel from '../features/slider/reactResponsiveCarusel'
 import DateRangePicker from '../dateRangePicker/DateRangePicker'
 import GoogleMap from '../components/MyGoogleMap'
 import { openModal } from "../modals/modalActions";
-
+ 
 const moment = extendMoment(Moment)
 
 const mapState = (state, ownProps) => {
@@ -96,7 +97,7 @@ class SingleProperty extends Component {
             </Segment>
             <Segment>
                <Header dividing size="large" content="Photos" />
-               <SlickSlider images={property.imgages} />
+               <ReactCarusel images={property.imgages} />
                
             </Segment>
 

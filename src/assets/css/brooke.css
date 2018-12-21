@@ -213,3 +213,7 @@ input[type="submit"]:focus {
    width: 150px;
    height: 150px;
 }
+
+.my-carousel{
+  background-color: #e6e6e6;
+}
