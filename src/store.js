@@ -2,22 +2,16 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { reactReduxFirebase, getFirebase } from 'react-redux-firebase';
 import { reduxFirestore, getFirestore } from 'redux-firestore';
-import rootReducer from './app/reducers/index';
 import thunk from 'redux-thunk'
+import rootReducer from './app/reducers/index';
 import firebase from './firebase';
-// import 'firebase/auth'
-// import 'firebase/database'
-// import 'firebase/firestore'
-
-// event listener? tied to whatever calls it?
-// disptached object has some user key to figure out the userReducer
 
 const rrfConfig = {
-   userProfile: 'users',
-   attachAuthIsReady: true,
-   useFirestoreForProfile: true,
-   updateProfileOnLogin: false
- };
+  userProfile: 'users',
+  attachAuthIsReady: true,
+  useFirestoreForProfile: true,
+  updateProfileOnLogin: false
+};
 
 
 

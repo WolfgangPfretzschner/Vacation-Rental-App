@@ -5,7 +5,7 @@ const initialState = [];
 
 
 export const fetchBookings = (state, payload) => {
-   return payload.filteredBookings
+   return  payload.filteredBookings
 }
 
 export default createReducer(initialState, {

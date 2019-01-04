@@ -8,12 +8,12 @@ import Script from "react-load-script";
 import { geocodeByAddress, getLatLng } from "react-places-autocomplete";
 import { Segment, Form, Button, Grid, Header } from "semantic-ui-react";
 import { composeValidators, combineValidators, isRequired, hasLengthGreaterThan } from "revalidate";
-import { createEvent, updateEvent, cancelToggle, seedProperties } from "../eventActions";
+import { createBooking, seedProperties } from "../eventActions";
 import TextInput from "../../../app/common/form/TextInput";
 import TextArea from "../../../app/common/form/TextArea";
 
 import firebase from "../../../firebase";
-import DateRPicker from "./../../../dateRangePicker/DateRangePicker";
+import DateRPicker from "../../../dateRangePicker/DateRangePicker";
 
 const mapState = (state, ownProps) => {
 
@@ -24,13 +24,9 @@ const mapState = (state, ownProps) => {
    };
 
 }
-      //   debugger
-
 
 const actions = {
-   createEvent,
-   updateEvent,
-   cancelToggle,
+   createBooking,
    seedProperties
 };
 
@@ -50,7 +46,7 @@ const validate = combineValidators({
    date: isRequired("date")
 });
 
-class EventForm extends Component {
+class BookingForm extends Component {
  
    // async componentDidMount() {
    //    const { firestore, match } = this.props;
@@ -72,15 +68,10 @@ class EventForm extends Component {
    onFormSubmit = values => {
       
       const newValues = {...values, name:this.props.name}
-      this.props.createEvent(newValues);
+      this.props.createBooking(newValues);
       this.props.history.push(`/profile/${this.props.auth.uid}`)
 
    };
-   // selectorMaker = () => {
-   //    return this.props.properties === undefined ?
-   //    null :
-   //    this.props.properties.map(prop =>{ return { key:prop.name, text: prop.name, value: prop.name } })
-   //  }
   
    render() {
       
@@ -88,11 +79,7 @@ class EventForm extends Component {
          invalid, 
          submitting,
          pristine,
-         event,
-         cancelToggle,
          loading,
-         displayValues,
-         name,
          dateRanges,
          folded,
          handleSubmit
@@ -101,16 +88,8 @@ class EventForm extends Component {
          <Grid>
          
             <Grid.Column width={12}>
-               {/* <Segment color='orange'  > */}
                   <Header sub color="teal" content="Create Booking" /> 
                   <Form onSubmit={handleSubmit(this.onFormSubmit) }>
-                     {/* <Field
-                        name="Property"
-                        type="text"
-                        component={SelectInput}
-                        options={name}
-                        placeholder="Select Property"
-                     /> */}
                      <Field
                         name="name"
                         type="text"
@@ -119,29 +98,16 @@ class EventForm extends Component {
                         placeholder="Any comments?"
                      />
                      <Header sub color="teal" content="Travel Dates" />
-
-                     {/* <Field
-                        name="checkin_date"
-                        type="text"
-                        component={DateInput}
-                        dateFormat="YYYY-MM-DD HH:mm"
-                        timeFormat="HH:mm"
-                        //  showTimeSelect
-                        placeholder="Checkin Date"
-                     /> */}
                      <Field
                         name="checkout_date"
                         type="text"
                         component={DateRPicker}
                         dateFormat="YYYY-MM-DD HH:mm"
                         timeFormat="HH:mm"
-                        //  showTimeSelect
-                        // value={{value:{start: null, end: null}}}
                         folded={folded}
                         dateRanges={dateRanges}
                         placeholder="Checkout date"
                         numCals={2}
-                        // displayValues={displayValues}
                      />
                      <Button
                         loading={loading}
@@ -158,19 +124,9 @@ class EventForm extends Component {
                      >
                         Cancel
                      </Button>
-                     {/* <Button
-                        onClick={() => cancelToggle(!event.cancelled, event.id)}
-                        type="button"
-                        color={event.cancelled ? "green" : "red"}
-                        floated="right"
-                        content={
-                           event.cancelled ? "Reactivate Event" : "Cancel Event"
-                        }
-                     /> */}
                   </Form>
 
                   <Button onClick={this.sampleHanlde}> seed </Button>
-               {/* </Segment> */}
             </Grid.Column>
          </Grid>
       );
@@ -183,7 +139,7 @@ export default withRouter(withFirestore(
       actions
    )(
       reduxForm({ form: "eventForm", enableReinitialize: false })(
-         EventForm
+         BookingForm
       )
    )
 ));

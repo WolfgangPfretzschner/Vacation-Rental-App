@@ -6,7 +6,7 @@ import PropertiesContainer from "./PropertiesContainer";
 import UserPage from '../user/UserDetailed/UserPage'
 // import CssBaseline from "@material-ui/core/CssBaseline";
 import NavBarM from "../nav/NavBar/NavBarM";
-import EventForm from "../features/property/EventForm/EventForm";
+import BookingForm from "../features/property/BookingForm/BookingForm";
 import PropertySingle from './PropertySingle'
 import ModalManager from '../modals/ModalManager';
  
@@ -33,7 +33,7 @@ class App extends Component {
                      <Route path="/properties" component={PropertiesContainer} />
                      <Route path="/property/:id" component={PropertySingle} />
                      <Route path="/profile/:id" component={UserPage} />
-                     <Route path="/seed" component={EventForm} />
+                     <Route path="/seed" component={BookingForm} />
                      
                      <Route path="/" component={FourOhFour} />
                   </Switch>

@@ -7,7 +7,6 @@ export const fetchBookingsForProp = (name) =>
       let today = Date.now()
       let ttoday = new Date(Date.now())
       const firestore = firebase.firestore();
-      // let bookings1 = firestore.collection("bookings").where("checkin_date", ">=" , ttoday)
       const bookings1 = firestore.collection("bookings").where("checkin_date", ">=", ttoday)
       try {
          let bookings1Snap = await bookings1.get();
@@ -19,7 +18,6 @@ export const fetchBookingsForProp = (name) =>
          let filteredBookings = data.filter(obj => obj.name === name)
 
 
-         //console.log("%cbookings fetch", "color:purple;font-size:18px", filteredBookings);
          dispatch({ type: FETCH_BOOKINGS, payload: { filteredBookings } })
       } catch (error) {
          console.log(error);

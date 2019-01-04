@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import PropertyCard from "./PropertyCard";
-import { fetchProperties } from "../actions/index";
+// import { fetchProperties } from "../actions/index";
 import { firestoreConnect } from "react-redux-firebase";
 import { Card } from "semantic-ui-react";
 import PropertSearchForm from '../features/propertySearch/PropertySearchForm'
@@ -10,7 +10,7 @@ class PropertiesList extends Component {
    // componentDidMount() {
    //    this.props.fetchProps();
    // }
-
+ 
    renderList = () => {
       // debugger
       if (this.props.properties && typeof this.props.search == 'string') {
@@ -47,13 +47,13 @@ function mapStateToProps(state) {
       search: state.search
    };
 }
-function mapDispatchToProps(dispatch) {
-   return {
-      fetchProps: () => dispatch(fetchProperties())
-   };
-}
+// function mapDispatchToProps(dispatch) {
+//    return {
+//       fetchProps: () => dispatch(fetchProperties())
+//    };
+// }
 export default connect(
    mapStateToProps,
-   mapDispatchToProps
+  //  mapDispatchToProps
 )(firestoreConnect([{ collection: "properties" }])(PropertiesList));
 // style={{width:'640px'}}

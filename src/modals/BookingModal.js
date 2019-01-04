@@ -3,7 +3,7 @@ import {Modal} from 'semantic-ui-react';
 import {connect} from 'react-redux';
 import { withRouter } from 'react-router-dom'
 import {closeModal} from "./modalActions";
-import EventForm from '../features/property/EventForm/EventForm';
+import BookingForm from '../features/property/BookingForm/BookingForm';
 
 const actions = {closeModal};
 
@@ -20,7 +20,7 @@ class BookingModal extends Component {
                 </Modal.Header>
             <Modal.Content>
                <Modal.Description>
-                  <EventForm name={this.props.name} 
+                  <BookingForm name={this.props.name} 
                   close={this.props.closeModal} 
                   dateRanges={this.props.dateRanges} folded={this.props.folded} 
                   // pro={this.pro}
