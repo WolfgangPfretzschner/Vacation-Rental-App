@@ -1,15 +1,14 @@
 import { toastr } from 'react-redux-toastr';
-import { FETCH_EVENTS } from './eventConstants';
 import { asyncActionStart, asyncActionFinish, asyncActionError } from '../../async/asyncActions';
 import { closeModal } from '../../modals/modalActions'
 import { createNewBooking } from '../../app/common/util/helpers';
 import moment from 'moment';
 import firebase from '../../firebase';
-import compareAsc from 'date-fns/compare_asc';
-import { property1 ,property2,property3,property4,property5,property6, } from './EventList/seedProperties';
+import { property1 ,property2,property3,property4,property5,property6, } from './PropertiesList/seedProperties';
 
 export const createBooking = event =>
    async (dispatch, getState, { getFirebase, getFirestore }) => {
+     dispatch(asyncActionStart())
       const firestore = getFirestore();
       const firebase = getFirebase();
       const user = firebase.auth().currentUser;
@@ -17,6 +16,7 @@ export const createBooking = event =>
       let newBooking = createNewBooking(user, photoURL, event);
       try {
          await firestore.add(`bookings`, newBooking);
+         dispatch(asyncActionFinish())
          dispatch(closeModal())
          toastr.success('Success', 'Boking has been created');
       } catch (error) {

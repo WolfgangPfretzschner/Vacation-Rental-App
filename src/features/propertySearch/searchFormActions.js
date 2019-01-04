@@ -6,6 +6,7 @@ import { reset } from "redux-form";
 
 export const searchForAvailableProperties = (inputValues) =>{
   return async (dispatch, getState) => {
+    dispatch(asyncActionStart)
     let today = Date.now()
     let ttoday = new Date(Date.now())
     const firestore = firebase.firestore();
@@ -78,6 +79,7 @@ export const searchForAvailableProperties = (inputValues) =>{
       }
       // debugger
       //console.log("%cquery log", "color:purple;font-size:18px", res);
+      dispatch(asyncActionFinish)
       dispatch({ type: FETCH_PROPS, payload: { res } })
     } catch (error) {
       console.log(error);
