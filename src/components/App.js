@@ -3,7 +3,7 @@ import { Container } from 'semantic-ui-react';
 import FourOhFour from "./FourOhFour";
 import { Switch, Route } from "react-router-dom";
 import PropertiesContainer from "./PropertiesContainer";
-import UserPage from '../user/UserDetailed/UserPage'
+import UserPage from '../user/UserPage'
 // import CssBaseline from "@material-ui/core/CssBaseline";
 import NavBarM from "../nav/NavBar/NavBarM";
 import BookingForm from "../features/property/BookingForm/BookingForm";

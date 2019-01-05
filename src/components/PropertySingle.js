@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchProperties } from "../actions/index";
 import { fetchBookingsForProp } from "../features/singleProp/singlePropActions";
 import Moment from 'moment';
 import { extendMoment } from 'moment-range';
