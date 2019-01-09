@@ -1,9 +1,7 @@
 import { toastr } from 'react-redux-toastr';
-import { asyncActionStart, asyncActionFinish, asyncActionError } from '../../async/asyncActions';
+import { asyncActionStart, asyncActionFinish } from '../../async/asyncActions';
 import { closeModal } from '../../modals/modalActions'
 import { createNewBooking } from '../../app/common/util/helpers';
-import moment from 'moment';
-import firebase from '../../firebase';
 import { property1 ,property2,property3,property4,property5,property6, } from './PropertiesList/seedProperties';
 
 export const createBooking = event =>

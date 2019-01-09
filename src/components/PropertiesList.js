@@ -54,6 +54,4 @@ function mapStateToProps(state) {
 // }
 export default connect(
    mapStateToProps,
-  //  mapDispatchToProps
 )(firestoreConnect([{ collection: "properties" }])(PropertiesList));
-// style={{width:'640px'}}

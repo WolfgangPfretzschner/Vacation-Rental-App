@@ -4,15 +4,12 @@ import { connect } from "react-redux";
 import { reduxForm, Field } from "redux-form";
 import { withRouter } from 'react-router-dom'
 import { withFirestore } from "react-redux-firebase";
-import Script from "react-load-script";
-import { geocodeByAddress, getLatLng } from "react-places-autocomplete";
 import { Segment, Form, Button, Grid, Header } from "semantic-ui-react";
 import { composeValidators, combineValidators, isRequired, hasLengthGreaterThan } from "revalidate";
-import { createBooking, seedProperties } from "../eventActions";
+import { createBooking, seedProperties } from "../propertiesActions";
 import TextInput from "../../../app/common/form/TextInput";
 import TextArea from "../../../app/common/form/TextArea";
 
-import firebase from "../../../firebase";
 import DateRPicker from "../../../dateRangePicker/DateRangePicker";
 
 const mapState = (state, ownProps) => {
@@ -134,12 +131,12 @@ class BookingForm extends Component {
 }
 
 export default withRouter(withFirestore(
-   connect(
-      mapState,
-      actions
-   )(
-      reduxForm({ form: "eventForm", enableReinitialize: false })(
-         BookingForm
-      )
-   )
+  connect(
+    mapState,
+    actions
+  )(
+    reduxForm({ form: "eventForm", enableReinitialize: false })(
+      BookingForm
+    )
+  )
 ));

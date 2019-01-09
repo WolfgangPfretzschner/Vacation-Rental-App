@@ -7,7 +7,7 @@ import 'semantic-ui-css/semantic.min.css';
 
 import modalsReducer from '../../modals/modalReducer';
 import asyncReducer from '../../async/asyncReducer';
-import eventReducer from '../../features/property/eventReducer';
+import propertiesReducer from '../../features/property/propertiesReducer';
 import testReducer from '../../features/testarea/testReducer';
 import searchReducer from '../../features/propertySearch/propertySearchReducer';
 import { reducer as toastrReducer } from 'react-redux-toastr';
@@ -19,7 +19,7 @@ const rootReducer = combineReducers({
    form: FormReducer,
    modals: modalsReducer,
    async: asyncReducer,
-   events: eventReducer,
+   events: propertiesReducer,
    test: testReducer,
    toastr: toastrReducer,
    search: searchReducer,

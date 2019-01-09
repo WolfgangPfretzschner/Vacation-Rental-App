@@ -1,5 +1,5 @@
 import { createReducer } from '../../app/common/util/reducerUtil';
-import { CREATE_EVENT } from './eventConstants';
+import { CREATE_BOOKING } from './propertiesConstants';
 
  const initialState = [];
 
@@ -9,6 +9,6 @@ export const createBooking = (state, payload) => {
 
 
 export default createReducer(initialState, {
-  [CREATE_EVENT]: createBooking,
+  [CREATE_BOOKING]: createBooking,
 
 })
