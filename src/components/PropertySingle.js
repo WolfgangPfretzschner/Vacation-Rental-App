@@ -5,7 +5,7 @@ import Moment from 'moment';
 import { extendMoment } from 'moment-range';
 import { withFirestore, firebaseConnect, isEmpty } from "react-redux-firebase";
 import { Grid, Header, Icon, Item, Button, Segment, Image } from 'semantic-ui-react';
-import SlickSlider from '../features/slider/slick-slider'
+// import SlickSlider from '../features/slider/slick-slider'
 import ReactCarusel from '../features/slider/reactResponsiveCarusel'
 import DateRangePicker from '../dateRangePicker/DateRangePicker'
 import GoogleMap from '../components/MyGoogleMap'
@@ -18,8 +18,7 @@ const mapState = (state, ownProps) => {
    let idCurrent = ownProps.match.params.id
    if (state.firestore.ordered.properties && state.firestore.ordered.properties.length > 0) {
       property = state.firestore.ordered.properties.find(prop => prop.id === idCurrent);
-   } else {
-   }
+   } 
    return {
       property,
       auth: state.firebase.auth,

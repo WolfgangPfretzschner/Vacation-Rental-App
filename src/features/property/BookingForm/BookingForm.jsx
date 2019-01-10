@@ -5,7 +5,6 @@ import { reduxForm, Field } from "redux-form";
 import { withRouter } from 'react-router-dom'
 import { withFirestore } from "react-redux-firebase";
 import { Segment, Form, Button, Grid, Header } from "semantic-ui-react";
-import { composeValidators, combineValidators, isRequired, hasLengthGreaterThan } from "revalidate";
 import { createBooking, seedProperties } from "../propertiesActions";
 import TextInput from "../../../app/common/form/TextInput";
 import TextArea from "../../../app/common/form/TextArea";
@@ -27,21 +26,6 @@ const actions = {
    seedProperties
 };
 
-
-
-const validate = combineValidators({
-   title: isRequired({ message: "The event title is required" }),
-   category: isRequired({ message: "Please provide a category" }),
-   description: composeValidators(
-      isRequired({ message: "Please enter a description" }),
-      hasLengthGreaterThan(4)({
-         message: "Description needs to be at least 5 characters"
-      })
-   )(),
-   city: isRequired("city"),
-   venue: isRequired("venue"),
-   date: isRequired("date")
-});
 
 class BookingForm extends Component {
  

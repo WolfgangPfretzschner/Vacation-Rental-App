@@ -4,14 +4,14 @@ import { closeModal } from '../../modals/modalActions'
 import { createNewBooking } from '../../app/common/util/helpers';
 import { property1 ,property2,property3,property4,property5,property6, } from './PropertiesList/seedProperties';
 
-export const createBooking = event =>
+export const createBooking = booking =>
    async (dispatch, getState, { getFirebase, getFirestore }) => {
      dispatch(asyncActionStart())
       const firestore = getFirestore();
       const firebase = getFirebase();
       const user = firebase.auth().currentUser;
       const photoURL = getState().firebase.profile.photoURL;
-      let newBooking = createNewBooking(user, photoURL, event);
+      let newBooking = createNewBooking(user, photoURL, booking);
       try {
          await firestore.add(`bookings`, newBooking);
          dispatch(asyncActionFinish())

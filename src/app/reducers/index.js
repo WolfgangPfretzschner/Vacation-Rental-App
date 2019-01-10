@@ -19,7 +19,7 @@ const rootReducer = combineReducers({
    form: FormReducer,
    modals: modalsReducer,
    async: asyncReducer,
-   events: propertiesReducer,
+   properties: propertiesReducer,
    test: testReducer,
    toastr: toastrReducer,
    search: searchReducer,

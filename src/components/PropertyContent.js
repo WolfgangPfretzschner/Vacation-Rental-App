@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import MyMap from "./MyMap";
 import GoogleMap from "./MyGoogleMap";
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles'
@@ -46,7 +45,6 @@ class Content extends Component {
       return (
          // <div className='master-detail-element detail'>
          <Paper className={classes.paper}>
-            {/* <MyMap/> */}
                <GoogleMap lat={26.573981} lng={-81.913450} zoom={10} markers={ this.markersFunc() } />
          </Paper>
          // </div>
