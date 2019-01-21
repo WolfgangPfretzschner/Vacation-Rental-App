@@ -49,6 +49,8 @@ export const searchForAvailableProperties = (inputValues) =>{
         bookings5.push(dat);
       }
       let query6Snap = await query6.get();
+      console.log("%cQUERY TEST6","color:red;font-size:18px",
+      query6)
       let bookings6 = [];
       for (let i = 0; i < query6Snap.docs.length; i++) {
         let dat = { ...query6Snap.docs[i].data(), id: query6Snap.docs[i].id };

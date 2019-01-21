@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
+import { compose } from 'redux'
 import PropertyCard from "./PropertyCard";
 // import { fetchProperties } from "../actions/index";
-import { firestoreConnect } from "react-redux-firebase";
+import { firestoreConnect, withFirestore } from "react-redux-firebase";
 import { Card } from "semantic-ui-react";
 import PropertSearchForm from '../features/propertySearch/PropertySearchForm'
 
@@ -29,7 +30,7 @@ class PropertiesList extends Component {
    };
 
    render() {
-
+    // debugger
       return  <div>
             <div >
                <PropertSearchForm folded={false} />
@@ -52,6 +53,8 @@ function mapStateToProps(state) {
 //       fetchProps: () => dispatch(fetchProperties())
 //    };
 // }
-export default connect(
-   mapStateToProps,
-)(firestoreConnect([{ collection: "properties" }])(PropertiesList));
+export default compose( 
+  // withFirestore,
+  connect( mapStateToProps,null),
+  // firestoreConnect([{ collection: "properties" }])
+)(PropertiesList);
