@@ -22,4 +22,4 @@ export const fetchBookingsForProp = (name) =>
       } catch (error) {
          console.log(error);
       }
-   }
+   } 

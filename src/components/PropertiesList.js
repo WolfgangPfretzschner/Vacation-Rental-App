@@ -13,7 +13,7 @@ class PropertiesList extends Component {
    // }
  
    renderList = () => {
-      // debugger
+      
       if (this.props.properties && typeof this.props.search == 'string') {
          return  <div style={{paddingLeft:"20px"}}> <h3> No Properties found for the search</h3></div> ;
          };
@@ -30,7 +30,7 @@ class PropertiesList extends Component {
    };
 
    render() {
-    // debugger
+    
       return  <div>
             <div >
                <PropertSearchForm folded={false} />

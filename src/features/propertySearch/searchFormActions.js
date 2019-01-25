@@ -79,7 +79,7 @@ export const searchForAvailableProperties = (inputValues) =>{
       if (res.length === 0) {
         res = "No homes available"
       }
-      // debugger
+      
       //console.log("%cquery log", "color:purple;font-size:18px", res);
       dispatch(asyncActionFinish)
       dispatch({ type: FETCH_PROPS, payload: { res } })

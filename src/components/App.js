@@ -21,27 +21,27 @@ import ModalManager from '../modals/ModalManager';
 //    },
 // }); 
 class App extends Component {
-   render() {
-      return (
+  render() {
+    return (
       <div>
-            <ModalManager />
-            <div>
-               <NavBarM />
-               <Container className="main">
-                  <Switch>
-                     <Route exact path="/" component={PropertiesContainer} />
-                     <Route path="/properties" component={PropertiesContainer} />
-                     <Route path="/property/:id" component={PropertySingle} />
-                     <Route path="/profile/:id" component={UserPage} />
-                     <Route path="/seed" component={BookingForm} />
-                     
-                     <Route path="/" component={FourOhFour} />
-                  </Switch>
-               </Container>
-            </div>
+        <ModalManager />
+        <div>
+          <NavBarM />
+          <Container className="main">
+            <Switch>
+              <Route exact path="/" component={PropertiesContainer} />
+              <Route path="/properties" component={PropertiesContainer} />
+              <Route path="/property/:id" component={PropertySingle} />
+              <Route path="/profile/:id" component={UserPage} />
+              <Route path="/seed" component={BookingForm} />
+
+              <Route path="/" component={FourOhFour} />
+            </Switch>
+          </Container>
+        </div>
       </div>
-   );
-}
+    );
+  }
 }
 
 export default App;

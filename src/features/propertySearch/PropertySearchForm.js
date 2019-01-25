@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Form, Segment, Button, Label, Divider } from "semantic-ui-react";
 import { Field, reduxForm, reset } from "redux-form";
-
 import TextInput from "../../app/common/form/TextInput";
 import DateRPicker from "../../dateRangePicker/DateRangePicker";
 import { searchForAvailableProperties, clearSearch } from "./searchFormActions";
 import { firestoreConnect } from "react-redux-firebase";
-import { combineValidators, isRequired } from 'revalidate'
+import { combineValidators, isRequired, hasLengthGreaterThan, composeValidators } from 'revalidate'
 import SelectInput from "../../app/common/form/SelectInput";
 
 
@@ -17,9 +16,13 @@ const actions = {
 };
 
 const validate = combineValidators({
-  city: isRequired("city"),
-  rooms: isRequired("rooms"),
-  datesToSearch: isRequired("datesToSearch")
+  city: isRequired({message: "city"}),
+  rooms: isRequired({message: "rooms"}),
+  datesToSearch: isRequired({message: "datesToSearch"}),
+  test:  composeValidators(
+    isRequired({message: 'Please enter a description'}),
+    hasLengthGreaterThan(4)({message: 'Description needs to be at least 5 characters'})
+    )()
 });
 
 const stateDefinitions = {
@@ -56,13 +59,13 @@ class PropertySearchForm extends Component {
   // }
   citySelectorMaker = () => {
     if (this.props.properties === undefined) {
-      null
+      return null
     } else {
       let cities = this.props.properties.map(prop => prop.city)
       let unique = [...new Set(cities)]
       return unique.map(city => { return { key: city, text: city, value: city } })
-      // debugger
-    }
+      
+    } 
   }
   roomSelectorMaker = () => {
     if (this.props.properties === undefined) {
@@ -71,7 +74,7 @@ class PropertySearchForm extends Component {
       let bedrooms = this.props.properties.map(prop => prop.bedrooms)
       let unique = [...new Set(bedrooms)]
       return unique.map(rooms => { return { key: rooms, text: rooms, value: rooms } })
-      // debugger
+      
     }
   }
   clearAll = () => {
@@ -104,6 +107,13 @@ class PropertySearchForm extends Component {
               type="text"
               component={SelectInput}
               options={this.citySelectorMaker()}
+              placeholder="Select City"
+            />
+            <Field
+              name="test"
+              type="text"
+              component={TextInput}
+              // options={this.citySelectorMaker()}
               placeholder="Select City"
             />
             <Field

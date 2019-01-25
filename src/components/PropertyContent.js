@@ -19,7 +19,7 @@ class Content extends Component {
       super(props);
    }
    markersFunc = () => {
-      // debugger
+      
       if (this.props.properties && typeof this.props.search == 'string') {
          return [{name:"No Homes for the search", lat:26.573981, lng:-81.913450 }]
          ;

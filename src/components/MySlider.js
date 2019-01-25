@@ -26,7 +26,7 @@ export default class CenterMode extends Component {
     render() {
         //console.log("%cnewSlides in MySlider","color:pink;font-size:14px",this.props.pics)
         const pics = this.picsMaker()
-        // debugger
+        
         const settings = {
             autoplay: true,
             autoplaySpeed: 1000,
